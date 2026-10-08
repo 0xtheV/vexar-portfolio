@@ -601,7 +601,333 @@ nav {
 
 }
 
+  <!-- =========================
+     LIVE BTC
+========================= -->
 
+<section class="btc-section">
+
+  <div class="container">
+
+    <div class="btc-header">
+
+      <div>
+
+        <div class="label">
+          LIVE MARKET / BTC
+        </div>
+
+        <div class="btc-title">
+          BITCOIN
+        </div>
+
+      </div>
+
+      <div class="btc-live">
+        <span></span>
+        LIVE
+      </div>
+
+    </div>
+
+
+    <div class="btc-panel">
+
+      <div class="btc-top">
+
+        <div>
+
+          <div class="btc-price" id="btcPrice">
+            $--,---
+          </div>
+
+          <div class="btc-change" id="btcChange">
+            --
+          </div>
+
+        </div>
+
+
+        <div class="btc-symbol">
+          BTC / USDT
+        </div>
+
+      </div>
+
+
+      <div class="chart-wrap">
+
+        <canvas id="btcChart"></canvas>
+
+      </div>
+
+
+      <div class="btc-bottom">
+
+        <span>
+          BINANCE SPOT
+        </span>
+
+        <span id="btcUpdated">
+          UPDATING...
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+  /* =========================
+   LIVE BTC
+========================= */
+
+.btc-section {
+
+  padding: 90px 0;
+
+  border-top: 1px solid var(--line);
+
+  border-bottom: 1px solid var(--line);
+
+  position: relative;
+
+}
+
+
+.btc-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: end;
+
+  margin-bottom: 30px;
+
+}
+
+
+.btc-title {
+
+  font-size: clamp(42px, 6vw, 80px);
+
+  font-weight: 900;
+
+  letter-spacing: -.08em;
+
+  line-height: .9;
+
+  margin-top: 15px;
+
+}
+
+
+.btc-live {
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
+  color: #777;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+
+.btc-live span {
+
+  width: 7px;
+
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  animation: pulse 1.5s infinite;
+
+}
+
+
+.btc-panel {
+
+  border: 1px solid #292929;
+
+  background: #050505;
+
+  padding: 30px;
+
+  position: relative;
+
+  overflow: hidden;
+
+}
+
+
+.btc-panel::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 60px 60px;
+
+  pointer-events: none;
+
+}
+
+
+.btc-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: start;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+.btc-price {
+
+  font-size: clamp(38px, 5vw, 70px);
+
+  font-weight: 800;
+
+  letter-spacing: -.07em;
+
+}
+
+
+.btc-change {
+
+  margin-top: 8px;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 11px;
+
+  color: var(--accent);
+
+}
+
+
+.btc-symbol {
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 11px;
+
+  color: #555;
+
+}
+
+
+.chart-wrap {
+
+  height: 330px;
+
+  margin-top: 30px;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+#btcChart {
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+}
+
+
+.btc-bottom {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-top: 20px;
+
+  padding-top: 18px;
+
+  border-top: 1px solid #1d1d1d;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 9px;
+
+  color: #444;
+
+  position: relative;
+
+  z-index: 2;
+
+}
+
+
+@media(max-width:700px) {
+
+  .btc-section {
+
+    padding: 70px 0;
+
+  }
+
+  .btc-panel {
+
+    padding: 18px;
+
+  }
+
+  .chart-wrap {
+
+    height: 230px;
+
+  }
+
+  .btc-symbol {
+
+    font-size: 9px;
+
+  }
+
+}
+  
 /* =========================
    INTRO
 ========================= */
@@ -2911,6 +3237,323 @@ window.addEventListener(
   }
 );
 
+  /* =========================
+   LIVE BTC CHART
+========================= */
+
+const btcCanvas =
+  document.getElementById("btcChart");
+
+const btcCtx =
+  btcCanvas.getContext("2d");
+
+const btcPrice =
+  document.getElementById("btcPrice");
+
+const btcChange =
+  document.getElementById("btcChange");
+
+const btcUpdated =
+  document.getElementById("btcUpdated");
+
+
+let btcData = [];
+
+
+function resizeChart() {
+
+  const rect =
+    btcCanvas.getBoundingClientRect();
+
+  const dpr =
+    window.devicePixelRatio || 1;
+
+  btcCanvas.width =
+    rect.width * dpr;
+
+  btcCanvas.height =
+    rect.height * dpr;
+
+  btcCtx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+}
+
+
+function drawBTCChart() {
+
+  if (!btcData.length) return;
+
+
+  const width =
+    btcCanvas.clientWidth;
+
+  const height =
+    btcCanvas.clientHeight;
+
+
+  btcCtx.clearRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  const padding = 10;
+
+
+  const min =
+    Math.min(...btcData);
+
+  const max =
+    Math.max(...btcData);
+
+
+  const range =
+    max - min || 1;
+
+
+  const points =
+    btcData.map((value, index) => {
+
+      const x =
+        padding +
+        (index / (btcData.length - 1)) *
+        (width - padding * 2);
+
+
+      const y =
+        height -
+        padding -
+        ((value - min) / range) *
+        (height - padding * 2);
+
+
+      return { x, y };
+
+    });
+
+
+  /* gradient */
+
+  const gradient =
+    btcCtx.createLinearGradient(
+      0,
+      0,
+      0,
+      height
+    );
+
+
+  gradient.addColorStop(
+    0,
+    "rgba(223,255,0,.16)"
+  );
+
+
+  gradient.addColorStop(
+    1,
+    "rgba(223,255,0,0)"
+  );
+
+
+  btcCtx.beginPath();
+
+  btcCtx.moveTo(
+    points[0].x,
+    height
+  );
+
+
+  points.forEach(point => {
+
+    btcCtx.lineTo(
+      point.x,
+      point.y
+    );
+
+  });
+
+
+  btcCtx.lineTo(
+    points[points.length - 1].x,
+    height
+  );
+
+
+  btcCtx.closePath();
+
+  btcCtx.fillStyle =
+    gradient;
+
+  btcCtx.fill();
+
+
+  /* line */
+
+  btcCtx.beginPath();
+
+
+  points.forEach(
+    (point, index) => {
+
+      if (index === 0) {
+
+        btcCtx.moveTo(
+          point.x,
+          point.y
+        );
+
+      } else {
+
+        btcCtx.lineTo(
+          point.x,
+          point.y
+        );
+
+      }
+
+    }
+  );
+
+
+  btcCtx.strokeStyle =
+    "#dfff00";
+
+  btcCtx.lineWidth = 2;
+
+  btcCtx.stroke();
+
+
+  /* latest point */
+
+  const last =
+    points[points.length - 1];
+
+
+  btcCtx.beginPath();
+
+  btcCtx.arc(
+    last.x,
+    last.y,
+    4,
+    0,
+    Math.PI * 2
+  );
+
+  btcCtx.fillStyle =
+    "#dfff00";
+
+  btcCtx.fill();
+
+}
+
+
+async function loadBTC() {
+
+  try {
+
+    const response =
+      await fetch(
+        "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1h&limit=100"
+      );
+
+
+    const candles =
+      await response.json();
+
+
+    btcData =
+      candles.map(
+        candle =>
+          Number(candle[4])
+      );
+
+
+    const first =
+      btcData[0];
+
+    const last =
+      btcData[btcData.length - 1];
+
+
+    const change =
+      ((last - first) / first) * 100;
+
+
+    btcPrice.textContent =
+      "$" +
+      last.toLocaleString(
+        "en-US",
+        {
+          maximumFractionDigits: 2
+        }
+      );
+
+
+    btcChange.textContent =
+      (change >= 0 ? "+" : "") +
+      change.toFixed(2) +
+      "% / 24H";
+
+
+    btcUpdated.textContent =
+      "UPDATED " +
+      new Date().toLocaleTimeString(
+        [],
+        {
+          hour: "2-digit",
+          minute: "2-digit"
+        }
+      );
+
+
+    resizeChart();
+
+    drawBTCChart();
+
+  } catch(error) {
+
+    btcPrice.textContent =
+      "BTC / USDT";
+
+    btcChange.textContent =
+      "MARKET DATA UNAVAILABLE";
+
+    console.error(error);
+
+  }
+
+}
+
+
+window.addEventListener(
+  "resize",
+  () => {
+
+    resizeChart();
+
+    drawBTCChart();
+
+  }
+);
+
+
+loadBTC();
+
+
+setInterval(
+  loadBTC,
+  60000
+);
+  
 </script>
 
 
