@@ -312,118 +312,324 @@ nav{
 }
 
 
-/* BTC */
+<script>
+/* =========================
+   LIVE BTC MARKET DATA
+   ========================= */
 
-.btc-section{
-  padding:100px 0;
-  border-top:1px solid var(--line);
-  border-bottom:1px solid var(--line);
+const btcPriceEl = document.getElementById("btcPrice");
+const btcChangeEl = document.getElementById("btcChange");
+const btcCanvas = document.getElementById("btcChart");
+const btcStatusEl = document.getElementById("btcStatus");
+const btcTimeEl = document.getElementById("btcTime");
+
+const ctx = btcCanvas.getContext("2d");
+
+let livePrice = 0;
+let chartPrices = [];
+let lastChartPrice = 0;
+let socket = null;
+let reconnectTimer = null;
+
+/* Chart settings */
+const MAX_POINTS = 120;       // 120 seconds visible
+const CHART_INTERVAL = 1000;  // update chart once every second
+
+/* =========================
+   CANVAS SIZE
+   ========================= */
+
+function resizeCanvas() {
+    const rect = btcCanvas.getBoundingClientRect();
+
+    const dpr = window.devicePixelRatio || 1;
+
+    btcCanvas.width = rect.width * dpr;
+    btcCanvas.height = rect.height * dpr;
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    drawChart();
 }
 
-.btc-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin-bottom:30px;
+window.addEventListener("resize", resizeCanvas);
+
+/* =========================
+   DRAW CHART
+   ========================= */
+
+function drawChart() {
+    const width = btcCanvas.clientWidth;
+    const height = btcCanvas.clientHeight;
+
+    if (!width || !height || chartPrices.length < 2) return;
+
+    ctx.clearRect(0, 0, width, height);
+
+    const padding = 12;
+
+    const min = Math.min(...chartPrices);
+    const max = Math.max(...chartPrices);
+
+    const range = max - min || 1;
+
+    const points = chartPrices.map((price, index) => {
+
+        const x =
+            padding +
+            (index / (chartPrices.length - 1)) *
+            (width - padding * 2);
+
+        const y =
+            height -
+            padding -
+            ((price - min) / range) *
+            (height - padding * 2);
+
+        return { x, y };
+    });
+
+    /* Area */
+
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+
+    gradient.addColorStop(0, "rgba(220,255,0,0.18)");
+    gradient.addColorStop(1, "rgba(220,255,0,0)");
+
+    ctx.beginPath();
+
+    ctx.moveTo(points[0].x, height);
+
+    points.forEach(point => {
+        ctx.lineTo(point.x, point.y);
+    });
+
+    ctx.lineTo(points[points.length - 1].x, height);
+    ctx.closePath();
+
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
+    /* Line */
+
+    ctx.beginPath();
+
+    points.forEach((point, index) => {
+
+        if (index === 0) {
+            ctx.moveTo(point.x, point.y);
+        } else {
+            ctx.lineTo(point.x, point.y);
+        }
+
+    });
+
+    ctx.strokeStyle = "#dfff00";
+    ctx.lineWidth = 2;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+
+    ctx.stroke();
+
+    /* Current price dot */
+
+    const last = points[points.length - 1];
+
+    ctx.beginPath();
+    ctx.arc(last.x, last.y, 5, 0, Math.PI * 2);
+
+    ctx.fillStyle = "#dfff00";
+    ctx.fill();
 }
 
-.btc-title{
-  font-size:clamp(45px,6vw,80px);
-  font-weight:900;
-  letter-spacing:-.08em;
-  line-height:.9;
-  margin-top:15px;
+/* =========================
+   UPDATE PRICE
+   ========================= */
+
+function updatePrice(price) {
+
+    livePrice = Number(price);
+
+    if (!livePrice) return;
+
+    btcPriceEl.textContent =
+        "$" +
+        livePrice.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 }
 
-.btc-live{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-family:"DM Mono",monospace;
-  font-size:10px;
-  color:#777;
+/* =========================
+   UPDATE CHART
+   ONLY ONCE PER SECOND
+   ========================= */
+
+function updateChart() {
+
+    if (!livePrice) return;
+
+    lastChartPrice = livePrice;
+
+    chartPrices.push(livePrice);
+
+    if (chartPrices.length > MAX_POINTS) {
+        chartPrices.shift();
+    }
+
+    drawChart();
 }
 
-.btc-live span{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--accent);
-  animation:pulse 1.5s infinite;
+/* =========================
+   BINANCE WEBSOCKET
+   ========================= */
+
+function connectBTC() {
+
+    if (socket) {
+        try {
+            socket.close();
+        } catch (e) {}
+    }
+
+    btcStatusEl.textContent = "CONNECTING";
+
+    socket = new WebSocket(
+        "wss://stream.binance.com:9443/ws/btcusdt@trade"
+    );
+
+    socket.onopen = function() {
+
+        btcStatusEl.textContent = "LIVE";
+    };
+
+    socket.onmessage = function(event) {
+
+        const data = JSON.parse(event.data);
+
+        if (data.p) {
+            updatePrice(data.p);
+        }
+    };
+
+    socket.onerror = function() {
+
+        btcStatusEl.textContent = "RECONNECTING";
+    };
+
+    socket.onclose = function() {
+
+        btcStatusEl.textContent = "RECONNECTING";
+
+        clearTimeout(reconnectTimer);
+
+        reconnectTimer = setTimeout(() => {
+            connectBTC();
+        }, 3000);
+    };
 }
 
-.btc-panel{
-  border:1px solid #292929;
-  background:#050505;
-  padding:30px;
-  position:relative;
-  overflow:hidden;
+/* =========================
+   TRUE 24H CHANGE
+   ========================= */
+
+async function load24hChange() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"
+        );
+
+        const data = await response.json();
+
+        const change = Number(data.priceChangePercent);
+
+        btcChangeEl.textContent =
+            `${change >= 0 ? "+" : ""}${change.toFixed(2)}% / 24H`;
+
+    } catch (error) {
+
+        btcChangeEl.textContent = "LIVE / 24H";
+    }
 }
 
-.btc-panel::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:60px 60px;
-  pointer-events:none;
+/* =========================
+   INITIAL PRICE HISTORY
+   ========================= */
+
+async function loadHistory() {
+
+    try {
+
+        const response = await fetch(
+            "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=120"
+        );
+
+        const data = await response.json();
+
+        chartPrices = data.map(candle => Number(candle[4]));
+
+        if (chartPrices.length) {
+
+            livePrice =
+                chartPrices[chartPrices.length - 1];
+
+            updatePrice(livePrice);
+
+            drawChart();
+        }
+
+    } catch (error) {
+
+        console.log("BTC history failed");
+    }
 }
 
-.btc-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:start;
-  position:relative;
-  z-index:2;
+/* =========================
+   CLOCK
+   ========================= */
+
+function updateClock() {
+
+    const now = new Date();
+
+    btcTimeEl.textContent =
+        "LIVE · " +
+        now.toLocaleTimeString("en-US", {
+            hour12: false
+        });
 }
 
-.btc-price{
-  font-size:clamp(38px,5vw,70px);
-  font-weight:800;
-  letter-spacing:-.07em;
+/* =========================
+   START
+   ========================= */
+
+async function startBTC() {
+
+    await loadHistory();
+
+    await load24hChange();
+
+    resizeCanvas();
+
+    connectBTC();
+
+    /*
+       IMPORTANT:
+       Price = real-time
+       Chart = once per second
+    */
+
+    setInterval(updateChart, CHART_INTERVAL);
+
+    setInterval(updateClock, 1000);
+
+    updateClock();
 }
 
-.btc-change{
-  margin-top:8px;
-  font-family:"DM Mono",monospace;
-  font-size:11px;
-  color:var(--accent);
-}
-
-.btc-symbol{
-  font-family:"DM Mono",monospace;
-  font-size:11px;
-  color:#555;
-}
-
-.chart-wrap{
-  height:330px;
-  margin-top:30px;
-  position:relative;
-  z-index:2;
-}
-
-#btcChart{
-  width:100%;
-  height:100%;
-  display:block;
-}
-
-.btc-bottom{
-  display:flex;
-  justify-content:space-between;
-  margin-top:20px;
-  padding-top:18px;
-  border-top:1px solid #1d1d1d;
-  font-family:"DM Mono",monospace;
-  font-size:9px;
-  color:#444;
-  position:relative;
-  z-index:2;
-}
-
+startBTC();
+</script>
 
 /* INTRO */
 
