@@ -2346,8 +2346,43 @@ document.querySelectorAll("a").forEach(link => {
 
 
 /* =========================
-   SCROLL REVEAL
+   SCROLL REVEAL + COUNT-UP
 ========================= */
+
+/* Animate the visible proof-point numbers from zero to their real values */
+function animateMetric(element) {
+  if (!element || element.dataset.counted === "true") return;
+
+  const original = element.textContent.trim();
+  const match = original.match(/^([\d,.]+)(.*)$/);
+  if (!match) return;
+
+  const target = Number(match[1].replace(/,/g, ""));
+  const suffix = match[2] || "";
+  if (!Number.isFinite(target)) return;
+
+  element.dataset.counted = "true";
+  const decimals = (match[1].split(".")[1] || "").length;
+  const duration = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 1700;
+  const start = performance.now();
+
+  element.textContent = `0${suffix}`;
+
+  function tick(now) {
+    const progress = duration === 0 ? 1 : Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 4);
+    const current = target * eased;
+    element.textContent = `${current.toFixed(decimals)}${suffix}`;
+
+    if (progress < 1) {
+      requestAnimationFrame(tick);
+    } else {
+      element.textContent = original;
+    }
+  }
+
+  requestAnimationFrame(tick);
+}
 
 const observer =
 new IntersectionObserver(
@@ -2360,6 +2395,12 @@ new IntersectionObserver(
 
         entry.target.classList.add("visible");
 
+        const metric = entry.target.matches(".stat, .achievement")
+          ? entry.target.querySelector(".stat-number, .achievement-number")
+          : null;
+
+        if (metric) animateMetric(metric);
+        observer.unobserve(entry.target);
       }
 
     });
