@@ -420,27 +420,44 @@ nav{
   border-top:1px solid var(--line);
   border-bottom:1px solid var(--line);
   padding:22px 0;
+  background:rgba(255,255,255,.012);
 }
 
 .marquee-track{
-  display:inline-flex;
-  animation:marquee 28s linear infinite;
+  display:flex;
+  width:max-content;
+  animation:marquee 38s linear infinite;
+  will-change:transform;
 }
 
 .marquee span{
-  font-family:"DM Mono",monospace;
-  font-size:12px;
-  color:#666;
-  margin-right:55px;
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-family:"Space Grotesk",Inter,sans-serif;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.1em;
+  color:#8d8d88;
+  margin-right:48px;
+  transition:color .2s ease;
 }
 
+.marquee span:hover{color:#f4f4f1}
 .marquee strong{
   color:var(--accent);
+  font-family:"DM Mono",monospace;
+  font-size:15px;
+  font-weight:400;
 }
 
 @keyframes marquee{
   from{transform:translateX(0)}
   to{transform:translateX(-50%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .marquee-track{animation:none;flex-wrap:wrap;width:100%;gap:14px;padding:0 20px}
+  .marquee span{margin-right:12px}
 }
 
 
@@ -1333,21 +1350,21 @@ MESSAGE ME ON TELEGRAM ↗
 
 <div class="marquee-track">
 
-<span>CRYPTO <strong>×</strong></span>
-<span>CONTENT <strong>×</strong></span>
-<span>GHOSTWRITING <strong>×</strong></span>
-<span>COMMUNITY <strong>×</strong></span>
-<span>RESEARCH <strong>×</strong></span>
-<span>X / TWITTER <strong>×</strong></span>
-<span>TELEGRAM <strong>×</strong></span>
+<span>COMMUNITY MANAGEMENT <strong>×</strong></span>
+<span>ECOSYSTEM GROWTH <strong>×</strong></span>
+<span>BUSINESS DEVELOPMENT <strong>×</strong></span>
+<span>KOL RELATIONS <strong>×</strong></span>
+<span>COMMUNITY ENGAGEMENT <strong>×</strong></span>
+<span>PARTNERSHIPS <strong>×</strong></span>
+<span>CONTENT CREATION <strong>×</strong></span>
 
-<span>CRYPTO <strong>×</strong></span>
-<span>CONTENT <strong>×</strong></span>
-<span>GHOSTWRITING <strong>×</strong></span>
-<span>COMMUNITY <strong>×</strong></span>
-<span>RESEARCH <strong>×</strong></span>
-<span>X / TWITTER <strong>×</strong></span>
-<span>TELEGRAM <strong>×</strong></span>
+<span>COMMUNITY MANAGEMENT <strong>×</strong></span>
+<span>ECOSYSTEM GROWTH <strong>×</strong></span>
+<span>BUSINESS DEVELOPMENT <strong>×</strong></span>
+<span>KOL RELATIONS <strong>×</strong></span>
+<span>COMMUNITY ENGAGEMENT <strong>×</strong></span>
+<span>PARTNERSHIPS <strong>×</strong></span>
+<span>CONTENT CREATION <strong>×</strong></span>
 
 </div>
 
