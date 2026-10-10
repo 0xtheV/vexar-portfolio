@@ -455,15 +455,15 @@ nav{
 }
 
 /* Hover pauses the whole ticker and spotlights the hovered item */
-.marquee.is-hovered .marquee-track{animation-play-state:paused}
-.marquee.is-hovered .marquee span{opacity:.22}
-.marquee.is-hovered .marquee span.is-highlighted{
+.marquee.is-hovered .marquee-track{animation-play-state:paused !important}
+.marquee.is-hovered .marquee-track span{opacity:.22}
+.marquee.is-hovered .marquee-track span.is-highlighted{
   opacity:1;
   color:#f4f4f1;
   text-shadow:0 0 18px rgba(223,255,0,.16);
   transform:translateY(-1px);
 }
-.marquee.is-hovered .marquee span.is-highlighted strong{
+.marquee.is-hovered .marquee-track span.is-highlighted strong{
   color:var(--accent);
   text-shadow:0 0 12px rgba(223,255,0,.6);
 }
