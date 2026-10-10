@@ -143,6 +143,25 @@ a{
   from{opacity:0;transform:translateY(18px)}
   to{opacity:1;transform:translateY(0)}
 }
+@media(max-width:900px){
+  .hero-mascot{right:30px;bottom:145px;width:clamp(95px,17vw,150px);opacity:.52}
+  .hero h1{font-size:clamp(54px,10vw,100px)}
+  .hero-bottom{align-items:flex-start;flex-direction:column;gap:28px;margin-top:48px}
+  .hero-buttons{flex-wrap:wrap}
+}
+@media(max-width:600px){
+  .hero{min-height:100svh}
+  .hero-content{padding-top:120px;padding-bottom:56px}
+  .hero-top{align-items:flex-start;gap:16px;margin-bottom:38px}
+  .hero-top .label{max-width:170px;line-height:1.6}
+  .hero h1{font-size:clamp(47px,12vw,72px);line-height:.9;letter-spacing:-.075em}
+  .hero-subtitle{max-width:290px;line-height:1.8;font-size:9px}
+  .hero-description{font-size:16px;max-width:390px}
+  .hero-mascot{right:18px;top:155px;bottom:auto;width:88px;opacity:.28}
+  .hero-mascot-caption{font-size:7px}
+  .hero-buttons{width:100%;gap:8px}
+  .hero-buttons .button{padding:13px 12px;font-size:10px}
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     scroll-behavior:auto!important;
@@ -257,6 +276,59 @@ nav{
   position:relative;
   z-index:2;
   padding-top:110px;
+  width:100%;
+}
+.hero-mascot{
+  position:absolute;
+  z-index:1;
+  right:clamp(34px,7vw,120px);
+  bottom:clamp(115px,17vh,190px);
+  width:clamp(110px,15vw,205px);
+  aspect-ratio:1;
+  display:grid;
+  place-items:center;
+  opacity:.88;
+  pointer-events:none;
+  animation:mascotFloat 6.5s ease-in-out infinite;
+}
+.hero-mascot-image{
+  position:relative;
+  z-index:2;
+  width:64%;
+  height:64%;
+  object-fit:contain;
+  border-radius:24%;
+  filter:drop-shadow(0 0 24px rgba(223,255,0,.12));
+  animation:mascotTilt 8s ease-in-out infinite;
+}
+.hero-mascot-orbit{
+  position:absolute;
+  inset:4%;
+  border:1px solid rgba(223,255,0,.25);
+  border-radius:50%;
+}
+.hero-mascot-orbit-one{transform:rotate(-28deg) scaleY(.42)}
+.hero-mascot-orbit-two{transform:rotate(58deg) scaleY(.42);border-color:rgba(244,244,241,.2)}
+.hero-mascot-caption{
+  position:absolute;
+  bottom:-12px;
+  left:50%;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  color:#666;
+  font:9px "DM Mono",monospace;
+  letter-spacing:.16em;
+}
+.hero h1{position:relative;z-index:2;max-width:1180px;font-size:clamp(58px,9.7vw,148px);line-height:.86;letter-spacing:-.085em}
+.hero-highlight{color:var(--accent)}
+.hero-period{color:var(--text)}
+@keyframes mascotFloat{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-13px) rotate(2deg)}
+}
+@keyframes mascotTilt{
+  0%,100%{transform:rotate(-4deg) scale(1)}
+  50%{transform:rotate(4deg) scale(1.035)}
 }
 
 .hero-top{
@@ -1065,6 +1137,13 @@ VEXAR<span>.</span>FYI
 
 <div class="hero-glow"></div>
 
+<div class="hero-mascot" aria-hidden="true">
+  <span class="hero-mascot-orbit hero-mascot-orbit-one"></span>
+  <span class="hero-mascot-orbit hero-mascot-orbit-two"></span>
+  <img src="logo.png" alt="" class="hero-mascot-image">
+  <span class="hero-mascot-caption">V / WEB3 NATIVE</span>
+</div>
+
 <div class="container hero-content">
 
 <div class="hero-top">
@@ -1083,13 +1162,11 @@ ONLINE / BUILDING
 
 <h1 class="reveal">
 
-I BUILD<br>
+MAKING CRYPTO<br>
 
-<span class="outline">
-FOR CRYPTO
-</span><br>
+<span class="outline">IMPOSSIBLE TO</span><br>
 
-THE TIMELINE
+<span class="hero-highlight">IGNORE<span class="hero-period">.</span></span>
 
 </h1>
 
@@ -1105,8 +1182,8 @@ VIVEK — WEB3 CONTENT MANAGER / GHOSTWRITER / COMMUNITY MANAGER
 
 <p class="hero-description">
 
-Web3-native content and community professional
-working across X, Instagram and Telegram
+I turn crypto narratives into content people notice.
+Ghostwriting, social strategy, research and community growth for Web3 teams.
 
 </p>
 
