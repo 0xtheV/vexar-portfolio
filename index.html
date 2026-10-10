@@ -421,6 +421,7 @@ nav{
   border-bottom:1px solid var(--line);
   padding:22px 0;
   background:rgba(255,255,255,.012);
+  position:relative;
 }
 
 .marquee-track{
@@ -428,6 +429,7 @@ nav{
   width:max-content;
   animation:marquee 38s linear infinite;
   will-change:transform;
+  transition:filter .25s ease,opacity .25s ease;
 }
 
 .marquee span{
@@ -440,15 +442,35 @@ nav{
   letter-spacing:.1em;
   color:#8d8d88;
   margin-right:48px;
-  transition:color .2s ease;
+  transition:color .25s ease,opacity .25s ease,text-shadow .25s ease,transform .25s ease;
+  cursor:default;
 }
 
-.marquee span:hover{color:#f4f4f1}
 .marquee strong{
   color:var(--accent);
   font-family:"DM Mono",monospace;
   font-size:15px;
   font-weight:400;
+  transition:color .25s ease;
+}
+
+/* Hover pauses the whole ticker and spotlights the hovered item */
+.marquee.is-hovered .marquee-track{animation-play-state:paused}
+.marquee.is-hovered .marquee span{opacity:.22}
+.marquee.is-hovered .marquee span.is-highlighted{
+  opacity:1;
+  color:#f4f4f1;
+  text-shadow:0 0 18px rgba(223,255,0,.16);
+  transform:translateY(-1px);
+}
+.marquee.is-hovered .marquee span.is-highlighted strong{
+  color:var(--accent);
+  text-shadow:0 0 12px rgba(223,255,0,.6);
+}
+.marquee span:focus-visible{
+  outline:1px solid var(--accent);
+  outline-offset:5px;
+  color:#f4f4f1;
 }
 
 @keyframes marquee{
@@ -2861,6 +2883,31 @@ setInterval(sampleBTCChart, 1000);
   } else {
     typeHeroCopy();
   }
+})();
+</script>
+
+<script>
+(function(){
+  const ticker = document.querySelector(".marquee");
+  if(!ticker) return;
+  const items = ticker.querySelectorAll(".marquee-track span");
+  function highlight(item){
+    ticker.classList.add("is-hovered");
+    items.forEach(el => el.classList.toggle("is-highlighted", el === item));
+  }
+  function reset(){
+    ticker.classList.remove("is-hovered");
+    items.forEach(el => el.classList.remove("is-highlighted"));
+  }
+  items.forEach(item => {
+    item.addEventListener("mouseenter", () => highlight(item));
+    item.addEventListener("focus", () => highlight(item));
+    item.setAttribute("tabindex","0");
+  });
+  ticker.addEventListener("mouseleave", reset);
+  ticker.addEventListener("focusout", event => {
+    if(!ticker.contains(event.relatedTarget)) reset();
+  });
 })();
 </script>
 
