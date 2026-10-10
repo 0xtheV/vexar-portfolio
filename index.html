@@ -833,6 +833,9 @@ nav{
 .warzone-live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:8px;box-shadow:0 0 12px var(--accent)}
 .warzone-frame{display:block;width:100%;height: min(78vh,900px);min-height:560px;border:0;background:#050505}
 .warzone-note{margin-top:12px;color:#666;font:10px "DM Mono",monospace;line-height:1.6}
+.contact .hero-buttons{display:flex;flex-wrap:wrap;gap:10px}
+.contact .hero-buttons .button{white-space:nowrap}
+
 @media(max-width:700px){.warzone-frame{height:72vh;min-height:480px}.warzone-frame-top{font-size:9px;padding:12px;flex-wrap:wrap}.nav-links{gap:14px}}
 @media(max-width:480px){.warzone-frame{height:70vh;min-height:430px}.nav-links a[href="#warzone"]{display:none}}
 
@@ -1232,6 +1235,17 @@ footer{
   .hero-period{animation:none}
 }
 
+/* Scroll-aware role line: fades out on descent, returns on ascent */
+#heroScrollSubtitle{
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity .16s linear,transform .16s linear;
+  will-change:opacity,transform;
+}
+@media(prefers-reduced-motion:reduce){
+  #heroScrollSubtitle{transition:none}
+}
+
 </style>
 
 </head>
@@ -1290,7 +1304,7 @@ VEXAR<span>.</span>FYI
   <span class="hero-mascot-orbit hero-mascot-orbit-one"></span>
   <span class="hero-mascot-orbit hero-mascot-orbit-two"></span>
   <img src="logo.png" alt="" class="hero-mascot-image">
-  <span class="hero-mascot-caption">VEXAR / WEB3 NATIVE</span>
+  <span class="hero-mascot-caption">VEXAR / COMMUNITY BUILDER</span>
 </div>
 
 <div class="container hero-content">
@@ -1320,16 +1334,16 @@ MAKING CRYPTO<br>
 </h1>
 
 
-<div class="hero-subtitle reveal">
+<div class="hero-subtitle reveal" id="heroScrollSubtitle">
 
-WEB3 COMMUNITY MANAGER / ECOSYSTEM GROWTH / SOCIAL STRATEGY
+COMMUNITY MANAGER / ECOSYSTEM GROWTH / SOCIAL STRATEGY
 
 </div>
 
 
 <div class="hero-bottom reveal">
 
-<p class="hero-description" aria-label="I build and manage Web3 communities, turn members into active contributors, and help projects grow through engagement, partnerships and clear communication.">
+<p class="hero-description" aria-label="I build and manage crypto communities, turn members into active contributors, and help projects grow through engagement, partnerships and clear communication.">
   <span id="heroTypedText" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true"></span>
 </p>
 
@@ -1407,14 +1421,14 @@ MESSAGE ME ON TELEGRAM ↗
 
 <div class="intro-text">
 
-I turn crypto ideas into
+I build communities people want to stay in
 <span>
-content people actually care about
+and help them become active contributors
 </span>
 
-while researching narratives,
-managing communities and staying
-plugged into the market
+through clear communication, strong
+relationships, ecosystem growth and
+content that gives people a reason to care
 
 </div>
 
@@ -1600,8 +1614,8 @@ CRYPTERA
 </div>
 
 <div class="work-role">
-SOCIAL MEDIA MANAGER<br>
-& CONTENT CREATOR
+COMMUNITY & SOCIAL MEDIA MANAGER<br>
+/ CONTENT CREATOR
 </div>
 
 <div class="work-details">
@@ -1710,10 +1724,10 @@ Telegram communities and Twitter replies
     <div class="case-grid">
       <article class="case-card reveal">
         <div>
-          <div class="case-card-top"><span>01 / CONTENT + GROWTH</span><span class="case-card-mark">CRYPTERA ↗</span></div>
+          <div class="case-card-top"><span>01 / COMMUNITY + GROWTH</span><span class="case-card-mark">CRYPTERA ↗</span></div>
           <h3>CRYPTERA</h3>
-          <p>Social content and community execution across X, Telegram and Instagram, including ghostwriting, short-form video, carousels, stories and daily audience engagement.</p>
-          <div class="case-tags"><span>GHOSTWRITING</span><span>CONTENT STRATEGY</span><span>COMMUNITY</span><span>SHORT-FORM VIDEO</span></div>
+          <p>Community and social execution across X, Telegram and Instagram, including audience engagement, channel operations, campaign coordination and content creation.</p>
+          <div class="case-tags"><span>COMMUNITY OPERATIONS</span><span>ENGAGEMENT</span><span>CAMPAIGNS</span><span>CONTENT CREATION</span></div>
           <div class="case-metrics">
             <div class="case-metric"><strong>729K</strong><span>X IMPRESSIONS</span></div>
             <div class="case-metric"><strong>35K%</strong><span>VIDEO VIEW GROWTH</span></div>
@@ -1727,7 +1741,7 @@ Telegram communities and Twitter replies
         <div>
           <div class="case-card-top"><span>02 / TRADING CONTENT</span><span class="case-card-mark">MADDY ↗</span></div>
           <h3>MADDY</h3>
-          <p>Trading-focused content built around Gold and Forex setups, market updates, risk-management notes and Telegram distribution, written for readers who want actionable information without unnecessary noise.</p>
+          <p>Community and social support for trading audiences, including clear market updates, Telegram distribution, engagement and consistent communication.</p>
           <div class="case-tags"><span>GOLD / XAUUSD</span><span>MARKET UPDATES</span><span>TRADE FORMATTING</span><span>TELEGRAM</span></div>
           <div class="case-metrics">
             <div class="case-metric"><strong>01</strong><span>TRADE-FIRST CONTENT</span></div>
@@ -1883,7 +1897,7 @@ Content Creator & Community Moderator
 
 <div class="timeline-copy">
 
-Created crypto content and helped maintain
+Supported crypto content and helped maintain
 community engagement
 
 </div>
@@ -1932,7 +1946,7 @@ Social Media Manager & Content Creator
 
 <div class="timeline-copy">
 
-Full content operations across X,
+Community and social operations across X,
 Telegram and Instagram
 
 </div>
@@ -2013,7 +2027,7 @@ COMMUNITY MANAGEMENT
 </div>
 
 <div class="skill-value">
-Community strategy, Telegram and Discord management, member engagement, moderation and activation
+Community strategy, Telegram and Discord management, member engagement, moderation, activation and retention
 </div>
 
 </div>
@@ -2122,24 +2136,24 @@ Canva · Filmora · Notion · Perplexity AI · Claude AI
 </div>
 
 <div>
-loading crypto timeline...
+loading community systems...
 </div>
 
 <div>
-scanning markets / CT / narratives / communities
+scanning communities / partnerships / narratives
 </div>
 
 <div>
 role:
 <span class="white">
-WEB3 CONTENT MANAGER
+COMMUNITY MANAGER
 </span>
 </div>
 
 <div>
 specialty:
 <span class="white">
-CONTENT × RESEARCH × COMMUNITY
+COMMUNITY × GROWTH × PARTNERSHIPS
 </span>
 </div>
 
@@ -2174,17 +2188,15 @@ BUILDING
 
 <div class="about-text reveal">
 
-I'm a Web3 content and community
-professional working across crypto
-traders, influencers and communities
+I'm a community-focused operator working across crypto teams, creators and online communities
 
 <br><br>
 
 <span>
 
-I write, research, design,
-manage communities and study
-what makes people pay attention
+I manage communities, build relationships,
+coordinate growth and create content
+that keeps people engaged
 
 </span>
 
@@ -2197,7 +2209,7 @@ what makes people pay attention
 <div class="about-row reveal">
 
 <span>FOCUS</span>
-<span>WEB3 / CRYPTO</span>
+<span>CRYPTO / DIGITAL COMMUNITIES</span>
 
 </div>
 
@@ -2213,7 +2225,7 @@ what makes people pay attention
 <div class="about-row reveal">
 
 <span>ROLE</span>
-<span>CONTENT / GHOSTWRITING / COMMUNITY</span>
+<span>COMMUNITY / GROWTH / SOCIAL</span>
 
 </div>
 
@@ -2261,8 +2273,8 @@ INTERESTING
 
 <div class="contact-copy">
 
-Available for Web3, crypto,
-content and community work
+Available for community management,
+ecosystem growth and partnerships
 
 </div>
 
@@ -2272,9 +2284,18 @@ content and community work
 <a
 href="https://x.com/0xVexar"
 target="_blank"
+rel="noopener noreferrer"
 class="button"
 >
-X / TWITTER ↗
+MESSAGE ON X ↗
+</a>
+<a
+href="https://t.me/nxtvision"
+target="_blank"
+rel="noopener noreferrer"
+class="button"
+>
+MESSAGE ME ON TELEGRAM ↗
 </a>
 
 </div>
@@ -2439,6 +2460,28 @@ new IntersectionObserver(
 document
 .querySelectorAll(".reveal")
 .forEach(el => observer.observe(el));
+
+
+/* =========================
+   HERO ROLE LINE SCROLL FADE
+========================= */
+const heroRoleLine = document.getElementById("heroScrollSubtitle");
+let roleFadeFrame = false;
+function updateHeroRoleFade(){
+  if(!heroRoleLine) return;
+  const scrollY = Math.max(0, window.scrollY || 0);
+  const fadeDistance = Math.max(180, Math.min(300, window.innerHeight * 0.3));
+  const progress = Math.min(scrollY / fadeDistance, 1);
+  heroRoleLine.style.opacity = String(1 - progress);
+  heroRoleLine.style.transform = `translateY(${-progress * 14}px)`;
+  roleFadeFrame = false;
+}
+window.addEventListener("scroll", () => {
+  if(roleFadeFrame) return;
+  roleFadeFrame = true;
+  window.requestAnimationFrame(updateHeroRoleFade);
+}, {passive:true});
+updateHeroRoleFade();
 
 
 /* =========================
