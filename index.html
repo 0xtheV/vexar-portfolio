@@ -1084,7 +1084,7 @@ footer{
 }
 
 
-/* HERO DESCRIPTION: sharper type and left-to-right reveal */
+/* HERO DESCRIPTION: character-by-character typewriter */
 .hero-description{
   font-family:"Space Grotesk",Inter,sans-serif;
   font-size:clamp(17px,1.45vw,20px);
@@ -1092,14 +1092,20 @@ footer{
   letter-spacing:-.025em;
   line-height:1.6;
   color:#c3c3c0;
-  animation:heroCopyReveal 1.35s cubic-bezier(.22,1,.36,1) .2s both;
+  min-height:3.2em;
 }
-@keyframes heroCopyReveal{
-  from{opacity:0;clip-path:inset(0 100% 0 0);transform:translateY(8px)}
-  to{opacity:1;clip-path:inset(0 0 0 0);transform:translateY(0)}
+.typing-cursor{
+  display:inline-block;
+  width:2px;
+  height:1em;
+  margin-left:3px;
+  vertical-align:-.12em;
+  background:var(--accent);
+  animation:typingCursorBlink .8s steps(1,end) infinite;
 }
+@keyframes typingCursorBlink{50%{opacity:0}}
 @media(prefers-reduced-motion:reduce){
-  .hero-description{animation:none;clip-path:none}
+  .typing-cursor{animation:none;opacity:0}
 }
 
 /* HERO REFINEMENT: prevent headline collisions and give the first screen room */
@@ -1284,10 +1290,8 @@ WEB3 COMMUNITY MANAGER / ECOSYSTEM GROWTH / SOCIAL STRATEGY
 
 <div class="hero-bottom reveal">
 
-<p class="hero-description">
-
-I build and manage Web3 communities, turn members into active contributors, and help projects grow through engagement, partnerships and clear communication.
-
+<p class="hero-description" aria-label="I build and manage Web3 communities, turn members into active contributors, and help projects grow through engagement, partnerships and clear communication.">
+  <span id="heroTypedText" aria-hidden="true"></span><span class="typing-cursor" aria-hidden="true"></span>
 </p>
 
 
@@ -2814,6 +2818,34 @@ setInterval(sampleBTCChart, 1000);
 </script>
 
 <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
+
+<script>
+(function(){
+  const text = "I build and manage Web3 communities, turn members into active contributors, and help projects grow through engagement, partnerships and clear communication.";
+  function typeHeroCopy(){
+    const target = document.getElementById("heroTypedText");
+    if(!target || target.dataset.started === "true") return;
+    target.dataset.started = "true";
+    if(window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+      target.textContent = text;
+      return;
+    }
+    let index = 0;
+    const typeNext = () => {
+      if(index >= text.length) return;
+      target.textContent += text.charAt(index);
+      index++;
+      window.setTimeout(typeNext, text.charAt(index - 1) === " " ? 42 : 27);
+    };
+    window.setTimeout(typeNext, 350);
+  }
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", typeHeroCopy, {once:true});
+  } else {
+    typeHeroCopy();
+  }
+})();
+</script>
 
 </body>
 </html>
