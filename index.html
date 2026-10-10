@@ -1083,6 +1083,92 @@ footer{
 
 }
 
+
+/* HERO REFINEMENT: prevent headline collisions and give the first screen room */
+.hero{
+  min-height:100svh;
+  height:auto;
+  padding:138px 0 52px;
+  align-items:center;
+}
+.hero-content{padding-top:0;max-width:1400px}
+.hero-top{margin-bottom:clamp(28px,4vh,48px)}
+.hero h1{
+  max-width:100%;
+  width:100%;
+  font-size:clamp(56px,8.1vw,124px);
+  line-height:.94;
+  letter-spacing:-.075em;
+  overflow-wrap:normal;
+  word-break:normal;
+  margin:0;
+}
+.hero h1 .outline{
+  display:inline-block;
+  -webkit-text-stroke:1px #555;
+  white-space:nowrap;
+}
+.hero-highlight{display:inline-block;white-space:nowrap}
+.hero-period{
+  display:inline-block;
+  font-size:.78em;
+  transform-origin:55% 75%;
+  animation:periodPulse 2.4s cubic-bezier(.45,0,.55,1) infinite;
+}
+@keyframes periodPulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.28);opacity:.72}
+}
+.hero-subtitle{
+  margin-top:24px;
+  max-width:760px;
+  line-height:1.8;
+  letter-spacing:.08em;
+}
+.hero-bottom{
+  position:relative;
+  z-index:3;
+  margin-top:42px;
+  align-items:flex-end;
+  gap:32px;
+}
+.hero-description{
+  max-width:600px;
+  font-size:clamp(16px,1.35vw,19px);
+  line-height:1.65;
+}
+.hero-buttons{flex-wrap:wrap;justify-content:flex-end}
+.hero-buttons .button{white-space:nowrap}
+.hero-mascot{
+  right:clamp(24px,5vw,80px);
+  bottom:clamp(145px,20vh,220px);
+  width:clamp(105px,12vw,170px);
+  opacity:.7;
+}
+@media(max-width:1050px){
+  .hero h1{font-size:clamp(54px,8.5vw,90px)}
+  .hero-bottom{flex-direction:column;align-items:flex-start}
+  .hero-buttons{justify-content:flex-start}
+  .hero-mascot{right:24px;bottom:180px;opacity:.38}
+}
+@media(max-width:600px){
+  .hero{min-height:100svh;padding:118px 0 42px}
+  .hero-top{margin-bottom:32px}
+  .hero-top .label{max-width:none;font-size:9px}
+  .hero h1{font-size:clamp(40px,10.6vw,64px);line-height:.98;letter-spacing:-.07em}
+  .hero h1 .outline{white-space:normal}
+  .hero-subtitle{font-size:9px;margin-top:20px;max-width:300px}
+  .hero-bottom{margin-top:30px;gap:24px}
+  .hero-description{font-size:15px;line-height:1.6}
+  .hero-buttons{display:flex;flex-wrap:wrap;gap:8px}
+  .hero-buttons .button{padding:12px 11px;font-size:9px}
+  .hero-mascot{width:76px;top:128px;right:16px;bottom:auto;opacity:.24}
+  .hero-mascot-caption{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-period{animation:none}
+}
+
 </style>
 
 </head>
@@ -1141,7 +1227,7 @@ VEXAR<span>.</span>FYI
   <span class="hero-mascot-orbit hero-mascot-orbit-one"></span>
   <span class="hero-mascot-orbit hero-mascot-orbit-two"></span>
   <img src="logo.png" alt="" class="hero-mascot-image">
-  <span class="hero-mascot-caption">V / WEB3 NATIVE</span>
+  <span class="hero-mascot-caption">VEXAR / WEB3 NATIVE</span>
 </div>
 
 <div class="container hero-content">
@@ -1173,7 +1259,7 @@ MAKING CRYPTO<br>
 
 <div class="hero-subtitle reveal">
 
-COMMUNITY MANAGER / SOCIAL MEDIA MANAGER / WEB3 CONTENT
+COMMUNITY MANAGER / SOCIAL MEDIA MANAGER / CONTENT STRATEGY
 
 </div>
 
@@ -1182,7 +1268,7 @@ COMMUNITY MANAGER / SOCIAL MEDIA MANAGER / WEB3 CONTENT
 
 <p class="hero-description">
 
-I turn crypto chaos into content that hits. From CT-native posts and sharp research to social growth and community momentum, I help Web3 brands earn attention instead of begging for it.
+Crypto moves fast. Your content should move faster. I turn market noise into CT-native posts, sharp campaigns and communities people actually want to be part of.
 
 </p>
 
