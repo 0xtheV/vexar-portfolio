@@ -92,6 +92,66 @@ a{
 }
 
 
+/* MOTION DESIGN */
+.reveal{
+  transition:
+    opacity .85s cubic-bezier(.22,1,.36,1),
+    transform .85s cubic-bezier(.22,1,.36,1);
+}
+.hero h1{
+  transition:
+    opacity 1s cubic-bezier(.22,1,.36,1),
+    transform 1s cubic-bezier(.22,1,.36,1);
+}
+.hero-grid{
+  transition:transform .45s cubic-bezier(.2,.7,.2,1);
+  will-change:transform;
+}
+.nav-links a{
+  position:relative;
+  transition:color .25s ease;
+}
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:100%;
+  bottom:-7px;
+  height:1px;
+  background:var(--accent);
+  transition:right .28s ease;
+}
+.nav-links a:hover::after{right:0}
+.button{
+  transition:
+    transform .28s cubic-bezier(.2,.8,.2,1),
+    background .28s ease,
+    color .28s ease,
+    border-color .28s ease;
+}
+.button:hover{transform:translateY(-4px)}
+.work-item,.stat,.skill,.achievement,.timeline-item{
+  transition:
+    transform .35s cubic-bezier(.2,.8,.2,1),
+    border-color .35s ease,
+    background-color .35s ease;
+}
+.work-item:hover,.stat:hover,.skill:hover,.achievement:hover{
+  transform:translateY(-5px);
+}
+@keyframes softEnter{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto!important;
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+  }
+}
+
 /* NAV */
 
 nav{
@@ -2338,6 +2398,42 @@ window.addEventListener("scroll", () => {
   }
 
 });
+
+
+/* =========================
+   MOTION DETAILS
+========================= */
+
+/* Stagger elements as they enter the viewport */
+const revealItems = document.querySelectorAll(".reveal");
+revealItems.forEach((item, index) => {
+  item.style.transitionDelay = `${(index % 4) * 75}ms`;
+});
+
+/* Gentle pointer movement on the hero grid */
+const heroSection = document.querySelector(".hero");
+const heroGrid = document.querySelector(".hero-grid");
+
+if (heroSection && heroGrid && window.matchMedia("(pointer:fine)").matches) {
+  heroSection.addEventListener("pointermove", event => {
+    const rect = heroSection.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    heroGrid.style.transform =
+      `translate3d(${x * -12}px, ${y * -12}px, 0)`;
+  });
+
+  heroSection.addEventListener("pointerleave", () => {
+    heroGrid.style.transform = "translate3d(0,0,0)";
+  });
+}
+
+/* Keep animations calm for visitors who prefer reduced motion */
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  revealItems.forEach(item => {
+    item.style.transitionDelay = "0ms";
+  });
+}
 
 
 /* =========================
