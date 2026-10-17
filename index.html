@@ -861,8 +861,8 @@ nav{
 .radar-source-handle{color:#686868;font-size:11px}
 
 /* SELECTED CASE STUDIES */
-.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:38px}
-.case-card{position:relative;min-height:360px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:28px;border:1px solid #292929;background:radial-gradient(ellipse at 100% 0%,rgba(223,255,0,.09),transparent 42%),#080808;transition:border-color .3s ease,transform .3s ease}
+.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px;margin-top:38px}
+.case-card{position:relative;min-height:0;align-self:start;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;padding:28px;border:1px solid #292929;background:radial-gradient(ellipse at 100% 0%,rgba(223,255,0,.09),transparent 42%),#080808;transition:border-color .3s ease,transform .3s ease}
 .case-card:hover{border-color:rgba(223,255,0,.5);transform:translateY(-5px)}
 .case-card-top{display:flex;justify-content:space-between;gap:12px;color:#777;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em}
 .case-card-mark{color:var(--accent);font-size:12px}
