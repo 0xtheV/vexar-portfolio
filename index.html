@@ -131,17 +131,8 @@ a{
 }
 
 /* existing motion refinements */
-/* legacy reveal declaration replaced below */
-.reveal{
-  transition:
-    opacity .85s cubic-bezier(.22,1,.36,1),
-    transform .85s cubic-bezier(.22,1,.36,1);
-}
-.hero h1{
-  transition:
-    opacity 1s cubic-bezier(.22,1,.36,1),
-    transform 1s cubic-bezier(.22,1,.36,1);
-}
+/* Use the editorial reveal timings declared above; avoid competing transitions. */
+.hero h1{transition:color 240ms ease;}
 .hero-grid{
   transition:transform .45s cubic-bezier(.2,.7,.2,1);
   will-change:transform;
@@ -161,13 +152,7 @@ a{
   transition:right .28s ease;
 }
 .nav-links a:hover::after{right:0}
-.button{
-  transition:
-    transform .28s cubic-bezier(.2,.8,.2,1),
-    background .28s ease,
-    color .28s ease,
-    border-color .28s ease;
-}
+.button{transition:transform var(--motion-medium) var(--ease-editorial),background var(--motion-medium) ease,color var(--motion-medium) ease,border-color var(--motion-medium) ease;}
 .button:hover{transform:translateY(-4px)}
 .work-item,.stat,.skill,.achievement,.timeline-item{
   transition:
