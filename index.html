@@ -908,6 +908,50 @@ nav{
 .case-highlight-label{display:block;margin-bottom:8px;color:#777;font:9px "DM Mono",monospace;letter-spacing:.08em}
 .case-highlight a{color:var(--accent);font:11px "DM Mono",monospace;line-height:1.7;text-decoration:none}
 .case-highlight a:hover{text-decoration:underline}
+
+/* CRYPTERA ANALYTICS: GSAP-style, number-first motion */
+.case-card-wide .case-metrics .case-metric{
+  position:relative;
+  overflow:hidden;
+  transform:translateZ(0);
+}
+.case-card-wide .case-metrics .case-metric::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:2px;
+  background:var(--accent);
+  transform:scaleX(var(--metric-progress,0));
+  transform-origin:left center;
+  opacity:.65;
+  pointer-events:none;
+}
+.case-card-wide .case-metrics .case-metric.is-metric-visible{
+  border-color:#424424;
+}
+.case-card-wide .case-metrics .case-metric strong{
+  display:inline-block;
+  font-variant-numeric:tabular-nums;
+  will-change:transform,opacity;
+}
+.case-card-wide .case-metrics .case-metric strong.metric-enter{
+  animation:metricSettle 520ms cubic-bezier(.18,.75,.25,1) both;
+}
+@keyframes metricSettle{
+  0%{opacity:.25;transform:translateY(12px) scale(.985);filter:blur(2px)}
+  72%{opacity:1;transform:translateY(-1px) scale(1.005);filter:blur(0)}
+  100%{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+}
+.case-card-wide .channel-heading{
+  opacity:.72;
+  transition:opacity 260ms ease;
+}
+.case-card-wide .channel-block.is-channel-visible .channel-heading{opacity:1}
+@media(prefers-reduced-motion:reduce){
+ .case-card-wide .case-metrics .case-metric::after{transform:none}
+ .case-card-wide .case-metrics .case-metric strong.metric-enter{animation:none}
+}
+
 .case-card-wide{width:100%;min-width:0}
 .channel-block{margin-top:30px;padding-top:22px;border-top:1px solid #292929}
 .channel-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;color:#dfff00;font:10px "DM Mono",monospace;letter-spacing:.1em}
@@ -3008,6 +3052,84 @@ setInterval(sampleBTCChart, 1000);
     anchors:true
   });
   window.__vexarLenis = lenis;
+})();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script>
+(function(){
+  const section = document.querySelector("#case-studies .case-card-wide");
+  if(!section) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const counters = [...section.querySelectorAll(".case-metrics .case-metric strong")];
+  const blocks = [...section.querySelectorAll(".channel-block")];
+  const cards = [...section.querySelectorAll(".case-metrics .case-metric")];
+
+  function parseMetric(text){
+    const raw = text.trim();
+    const m = raw.match(/^([+−-]?)([\d,]+(?:\.\d+)?)(.*)$/);
+    if(!m) return null;
+    const value = Number(m[2].replace(/,/g,""));
+    if(!Number.isFinite(value)) return null;
+    return {sign:m[1],value,suffix:m[3],original:raw,decimals:(m[2].split(".")[1]||"").length};
+  }
+
+  function revealMetric(el){
+    const parsed = parseMetric(el.textContent);
+    el.classList.add("metric-enter");
+    if(!parsed || reducedMotion || !window.gsap){
+      el.style.opacity = "1";
+      el.style.transform = "none";
+      return;
+    }
+    const state = {value:0};
+    el.textContent = parsed.sign + "0" + parsed.suffix;
+    window.gsap.to(state,{
+      value:parsed.value,
+      duration:0.95,
+      ease:"power3.out",
+      onUpdate:function(){
+        const n = state.value.toLocaleString("en-US",{
+          minimumFractionDigits:parsed.decimals,
+          maximumFractionDigits:parsed.decimals
+        });
+        el.textContent = parsed.sign + n + parsed.suffix;
+      },
+      onComplete:function(){el.textContent=parsed.original}
+    });
+  }
+
+  if(reducedMotion || !("IntersectionObserver" in window)){
+    counters.forEach(el=>{el.style.opacity="1";el.style.transform="none"});
+    blocks.forEach(block=>block.classList.add("is-channel-visible"));
+    return;
+  }
+
+  const seen = new WeakSet();
+  const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting || seen.has(entry.target)) return;
+      seen.add(entry.target);
+      const block = entry.target;
+      block.classList.add("is-channel-visible");
+      const items = [...block.querySelectorAll(".case-metric")];
+      items.forEach((item,index)=>{
+        const el=item.querySelector("strong");
+        item.classList.add("is-metric-visible");
+        if(window.gsap){
+          window.gsap.fromTo(item,
+            {y:13,opacity:0},
+            {y:0,opacity:1,duration:.55,delay:index*.055,ease:"power2.out",clearProps:"transform,opacity"}
+          );
+          window.gsap.to(item,{duration:.7,delay:index*.055, "--metric-progress":1,ease:"power2.out"});
+        }
+        if(el) window.setTimeout(()=>revealMetric(el),index*55);
+      });
+    });
+  },{threshold:.35,rootMargin:"0px 0px -8% 0px"});
+
+  blocks.forEach(block=>observer.observe(block));
 })();
 </script>
 
