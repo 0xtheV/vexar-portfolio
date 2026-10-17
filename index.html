@@ -862,6 +862,15 @@ nav{
 
 /* SELECTED CASE STUDIES */
 .case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px;margin-top:38px}
+.case-grid-updated{grid-template-columns:minmax(0,1fr)}
+.case-card-wide{width:100%;min-width:0}
+.channel-block{margin-top:30px;padding-top:22px;border-top:1px solid #292929}
+.channel-heading{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px;color:#dfff00;font:10px "DM Mono",monospace;letter-spacing:.1em}
+.channel-heading span:last-child{color:#666;text-align:right;font-size:9px}
+.case-metrics-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.case-metrics-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.case-metrics-secondary{margin-top:10px}
+@media(max-width:760px){.case-metrics-4{grid-template-columns:repeat(2,minmax(0,1fr))}.case-metrics-3{grid-template-columns:repeat(2,minmax(0,1fr))}.channel-heading{align-items:flex-start;flex-direction:column}.channel-heading span:last-child{text-align:left}}
 .case-card{position:relative;min-height:0;align-self:start;display:flex;flex-direction:column;justify-content:flex-start;overflow:hidden;padding:28px;border:1px solid #292929;background:radial-gradient(ellipse at 100% 0%,rgba(223,255,0,.09),transparent 42%),#080808;transition:border-color .3s ease,transform .3s ease}
 .case-card:hover{border-color:rgba(223,255,0,.5);transform:translateY(-5px)}
 .case-card-top{display:flex;justify-content:space-between;gap:12px;color:#777;font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.08em}
@@ -1725,58 +1734,72 @@ Telegram communities and Twitter replies
       <div class="label">05 / SELECTED WORK</div>
       <div class="label">CASE STUDIES</div>
     </div>
-    <div class="case-grid">
-      <article class="case-card reveal">
+
+    <div class="case-grid case-grid-updated">
+      <article class="case-card case-card-wide reveal">
         <div>
-          <div class="case-card-top"><span>01 / COMMUNITY + GROWTH</span><span class="case-card-mark">CRYPTERA ↗</span></div>
-          <h3>CRYPTERA</h3>
-          <p>Community and social execution across X, Telegram and Instagram, including audience engagement, channel operations, campaign coordination and content creation.</p>
-          <div class="case-tags"><span>COMMUNITY OPERATIONS</span><span>ENGAGEMENT</span><span>CAMPAIGNS</span><span>CONTENT CREATION</span></div>
-          <div class="case-metrics">
-            <div class="case-metric"><strong>729K</strong><span>X IMPRESSIONS</span></div>
-            <div class="case-metric"><strong>35K%</strong><span>VIDEO VIEW GROWTH</span></div>
-            <div class="case-metric"><strong>98.4K</strong><span>MEDIA VIEWS</span></div>
-            <div class="case-metric"><strong>70.3K</strong><span>VIDEO VIEWS</span></div>
+          <div class="case-card-top"><span>01 / COMMUNITY + SOCIAL GROWTH</span><span class="case-card-mark">CRYPTERA ↗</span></div>
+          <h3>ONE BRAND.<br>THREE CHANNELS.</h3>
+          <p>I support Cryptera's social operations across X, YouTube and Instagram, combining platform-native content, short-form video, audience engagement and distribution. The figures below are account-level results from the supplied analytics exports, not a claim that every result came from one post or one activity.</p>
+          <div class="case-tags"><span>COMMUNITY OPERATIONS</span><span>SOCIAL STRATEGY</span><span>VIDEO DISTRIBUTION</span><span>CONTENT SYSTEMS</span></div>
+
+          <div class="channel-block">
+            <div class="channel-heading"><span>X / TWITTER</span><span>PERFORMANCE PERIOD IN PROVIDED REPORT</span></div>
+            <div class="case-metrics case-metrics-3">
+              <div class="case-metric"><strong>729K</strong><span>IMPRESSIONS · +94%</span></div>
+              <div class="case-metric"><strong>98.4K</strong><span>MEDIA VIEWS · +327%</span></div>
+              <div class="case-metric"><strong>70.3K</strong><span>VIDEO VIEWS · +35,058%</span></div>
+            </div>
           </div>
-        </div>
-        <div class="case-foot"><strong>CONTENT THAT EARNS ATTENTION</strong><span>01 / 03</span></div>
-      </article>
-      <article class="case-card reveal">
-        <div>
-          <div class="case-card-top"><span>02 / MULTI-PLATFORM PERFORMANCE</span><span class="case-card-mark">CRYPTERA ↗</span></div>
-          <h3>CRYPTERA CHANNELS</h3>
-          <p>Cross-platform video performance for Cryptera across YouTube and Instagram. These are account-level results from the supplied analytics exports, with the reporting windows shown below.</p>
-          <div class="case-tags"><span>YOUTUBE ANALYTICS</span><span>INSTAGRAM INSIGHTS</span><span>VIDEO DISTRIBUTION</span><span>SOCIAL PERFORMANCE</span></div>
-          <div class="case-metrics">
-            <div class="case-metric"><strong>3.12M</strong><span>YOUTUBE VIEWS · 19 JUL–16 OCT 2026</span></div>
-            <div class="case-metric"><strong>28.9K</strong><span>YOUTUBE WATCH HOURS</span></div>
-            <div class="case-metric"><strong>+14,477</strong><span>YOUTUBE SUBSCRIBERS GAINED</span></div>
-            <div class="case-metric"><strong>5.45%</strong><span>YOUTUBE THUMBNAIL CTR</span></div>
-            <div class="case-metric"><strong>520K</strong><span>INSTAGRAM REEL VIEWS · 9 SEP–9 OCT</span></div>
-            <div class="case-metric"><strong>910K</strong><span>INSTAGRAM VIEWERS · 30 DAYS</span></div>
-            <div class="case-metric"><strong>41</strong><span>INSTAGRAM REELS IN REPORT</span></div>
-            <div class="case-metric"><strong>24.6K</strong><span>INSTAGRAM FOLLOWERS SHOWN IN INSIGHTS</span></div>
+
+          <div class="channel-block">
+            <div class="channel-heading"><span>YOUTUBE</span><span>19 JUL–16 OCT 2026</span></div>
+            <div class="case-metrics case-metrics-4">
+              <div class="case-metric"><strong>3.12M</strong><span>VIEWS</span></div>
+              <div class="case-metric"><strong>28.9K</strong><span>WATCH HOURS</span></div>
+              <div class="case-metric"><strong>14,477</strong><span>SUBSCRIBERS GAINED</span></div>
+              <div class="case-metric"><strong>5.45%</strong><span>THUMBNAIL CTR</span></div>
+            </div>
           </div>
+
+          <div class="channel-block">
+            <div class="channel-heading"><span>INSTAGRAM</span><span>9 SEP–9 OCT 2026</span></div>
+            <div class="case-metrics case-metrics-4">
+              <div class="case-metric"><strong>520K</strong><span>REEL VIEWS</span></div>
+              <div class="case-metric"><strong>910K</strong><span>VIEWERS</span></div>
+              <div class="case-metric"><strong>41</strong><span>REELS IN REPORT</span></div>
+              <div class="case-metric"><strong>24,661</strong><span>FOLLOWERS SHOWN IN INSIGHTS</span></div>
+            </div>
+            <div class="case-metrics case-metrics-4 case-metrics-secondary">
+              <div class="case-metric"><strong>34K</strong><span>LIKES</span></div>
+              <div class="case-metric"><strong>594</strong><span>COMMENTS</span></div>
+              <div class="case-metric"><strong>10K</strong><span>SHARES</span></div>
+              <div class="case-metric"><strong>16K</strong><span>SAVES</span></div>
+            </div>
+          </div>
+
           <div class="case-evidence-links">
+            <a href="https://x.com/thecryptera" target="_blank" rel="noopener noreferrer">VIEW CRYPTERA ON X ↗</a>
             <a href="https://www.youtube.com/watch?v=Yg05ZAO8I7c" target="_blank" rel="noopener noreferrer">VIEW YOUTUBE VIDEO ↗</a>
             <a href="https://www.instagram.com/highiqtrades/" target="_blank" rel="noopener noreferrer">VIEW INSTAGRAM PROFILE ↗</a>
           </div>
-          <p class="case-source-note">Source: Cryptera YouTube Studio export, 19 Jul–16 Oct 2026; Cryptera Instagram Insights, 9 Sep–9 Oct 2026. Account-level results; not all metrics are attributable to a single post.</p>
+          <p class="case-source-note">Sources: supplied X performance figures; YouTube Studio export (19 Jul–16 Oct 2026); Instagram Insights (9 Sep–9 Oct 2026). Instagram likes, shares and saves are rounded from the export. Results are account-level and reporting windows differ by platform.</p>
         </div>
-        <div class="case-foot"><strong>ONE BRAND, MULTIPLE CHANNELS</strong><span>02 / 03</span></div>
+        <div class="case-foot"><strong>COMMUNITY, CONTENT & DISTRIBUTION</strong><span>01 / 02</span></div>
       </article>
+
       <article class="case-card reveal">
         <div>
-          <div class="case-card-top"><span>03 / TRADING CONTENT</span><span class="case-card-mark">MADDY ↗</span></div>
+          <div class="case-card-top"><span>02 / TRADING CONTENT</span><span class="case-card-mark">MADDY ↗</span></div>
           <h3>MADDY</h3>
-          <p>Community and social support for trading audiences, including clear market updates, Telegram distribution, engagement and consistent communication.</p>
+          <p>Social support for a trading audience, including market updates, structured trade communication, risk-management notes and Telegram distribution.</p>
           <div class="case-tags"><span>GOLD / XAUUSD</span><span>MARKET UPDATES</span><span>TRADE FORMATTING</span><span>TELEGRAM</span></div>
           <div class="case-metrics">
-            <div class="case-metric"><strong>01</strong><span>TRADE-FIRST CONTENT</span></div>
-            <div class="case-metric"><strong>24/7</strong><span>MARKET-AWARE WORKFLOW</span></div>
+            <div class="case-metric"><strong>DAILY</strong><span>MARKET-LED COMMUNICATION</span></div>
+            <div class="case-metric"><strong>RISK</strong><span>STRUCTURED TRADE FORMATTING</span></div>
           </div>
         </div>
-        <div class="case-foot"><strong>CLARITY UNDER MARKET PRESSURE</strong><span>03 / 03</span></div>
+        <div class="case-foot"><strong>CLARITY UNDER MARKET PRESSURE</strong><span>02 / 02</span></div>
       </article>
     </div>
   </div>
@@ -1804,11 +1827,11 @@ Telegram communities and Twitter replies
 </div>
 
 <div class="achievement-title">
-MEDIA VIEWS
+CRYPTERA X IMPRESSIONS
 </div>
 
 <div class="achievement-copy">
-Media views generated on the Cryptera X account
+729K impressions in the reported performance period, up 94%
 </div>
 
 </div>
@@ -1817,15 +1840,15 @@ Media views generated on the Cryptera X account
 <div class="achievement reveal">
 
 <div class="achievement-number">
-70.3K
+3.12M
 </div>
 
 <div class="achievement-title">
-VIDEO VIEWS
+CRYPTERA YOUTUBE VIEWS
 </div>
 
 <div class="achievement-copy">
-Video views generated for Cryptera
+YouTube Studio export, 19 July–16 October 2026
 </div>
 
 </div>
@@ -1834,15 +1857,15 @@ Video views generated for Cryptera
 <div class="achievement reveal">
 
 <div class="achievement-number">
-600K+
+520K
 </div>
 
 <div class="achievement-title">
-INSTAGRAM VIEWS
+CRYPTERA INSTAGRAM REEL VIEWS
 </div>
 
 <div class="achievement-copy">
-Three short-form videos within one week
+Instagram Insights, 9 September–9 October 2026
 </div>
 
 </div>
