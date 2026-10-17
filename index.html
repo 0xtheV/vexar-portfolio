@@ -30,9 +30,10 @@
   box-sizing:border-box;
 }
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
+html.lenis-enabled{scroll-behavior:auto}
+html.lenis-enabled body{overscroll-behavior-y:contain}
+
 
 body{
   background:var(--bg);
@@ -80,19 +81,57 @@ a{
   color:var(--muted);
 }
 
+/* Reveal states are defined in MOTION DESIGN above. */
+
+
+/* MOTION DESIGN: restraint over decoration */
+:root{
+  --motion-fast:180ms;
+  --motion-medium:360ms;
+  --motion-slow:720ms;
+  --ease-editorial:cubic-bezier(.22,1,.36,1);
+}
 .reveal{
   opacity:0;
-  transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s ease;
+  transform:translate3d(0,22px,0);
+  transition:opacity 680ms var(--ease-editorial),transform 680ms var(--ease-editorial);
+  transition-delay:var(--reveal-delay,0ms);
 }
-
 .reveal.visible{
   opacity:1;
-  transform:translateY(0);
+  transform:translate3d(0,0,0);
+}
+.hero-content .hero-top,
+.hero-content h1,
+.hero-content .hero-subtitle,
+.hero-content .hero-bottom{
+  opacity:0;
+  transform:translate3d(0,18px,0);
+  animation:heroEditorialEnter 760ms var(--ease-editorial) forwards;
+}
+.hero-content .hero-top{animation-delay:80ms}
+.hero-content h1{animation-delay:180ms}
+.hero-content .hero-subtitle{animation-delay:300ms}
+.hero-content .hero-bottom{animation-delay:420ms}
+@keyframes heroEditorialEnter{
+  to{opacity:1;transform:translate3d(0,0,0)}
+}
+.button,.case-card,.work-item,.skill,.achievement{
+  transition:transform var(--motion-medium) var(--ease-editorial),border-color var(--motion-medium) ease,background-color var(--motion-medium) ease,color var(--motion-medium) ease;
+}
+.case-card:hover,.work-item:hover,.skill:hover,.achievement:hover{transform:translateY(-3px)}
+@media(hover:none){
+  .case-card:hover,.work-item:hover,.skill:hover,.achievement:hover,.button:hover{transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto!important}
+  .reveal,.reveal.visible,.hero-content .hero-top,.hero-content h1,.hero-content .hero-subtitle,.hero-content .hero-bottom{
+    animation:none!important;opacity:1!important;transform:none!important;transition:none!important
+  }
 }
 
-
-/* MOTION DESIGN */
+/* existing motion refinements */
+/* legacy reveal declaration replaced below */
 .reveal{
   transition:
     opacity .85s cubic-bezier(.22,1,.36,1),
@@ -863,6 +902,23 @@ nav{
 /* SELECTED CASE STUDIES */
 .case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:16px;margin-top:38px}
 .case-grid-updated{grid-template-columns:minmax(0,1fr)}
+/* Editorial spacing keeps the long-form Cryptera case study readable */
+.case-card-wide{background:#080808}
+.case-card-wide .case-card-top{padding-bottom:14px;border-bottom:1px solid #292929}
+.case-card-wide h3{font-size:clamp(48px,8vw,104px);line-height:.88;letter-spacing:-.08em;margin:30px 0 20px}
+.case-card-wide>div>p{max-width:760px}
+.case-card-wide .channel-block{display:grid;grid-template-columns:190px minmax(0,1fr);column-gap:28px;align-items:start}
+.case-card-wide .channel-heading{display:block;margin:4px 0 0;line-height:1.8}
+.case-card-wide .channel-heading span{display:block}
+.case-card-wide .channel-heading span:last-child{text-align:left;margin-top:8px;line-height:1.6}
+.case-card-wide .case-metrics{margin-top:0}
+.case-card-wide .case-metrics-secondary{grid-column:2}
+.case-card-wide .case-highlight{grid-column:2}
+@media(max-width:760px){
+ .case-card-wide .channel-block{display:block}
+ .case-card-wide .channel-heading{margin-bottom:14px}
+ .case-card-wide .case-metrics-secondary{margin-top:10px}
+}
 .case-highlight{margin-top:14px;padding:14px;border:1px solid #292929;background:rgba(223,255,0,.035)}
 .case-highlight-label{display:block;margin-bottom:8px;color:#777;font:9px "DM Mono",monospace;letter-spacing:.08em}
 .case-highlight a{color:var(--accent);font:11px "DM Mono",monospace;line-height:1.7;text-decoration:none}
@@ -2553,36 +2609,19 @@ window.addEventListener("scroll", () => {
 updateHeroRoleFade();
 
 
-/* =========================
-   HERO PARALLAX
-========================= */
-
-window.addEventListener("scroll", () => {
-
-  const hero =
-    document.querySelector(".hero h1");
-
-  const scroll =
-    window.scrollY;
-
-  if(hero && scroll < window.innerHeight){
-
-    hero.style.transform =
-      `translateY(${scroll * .12}px)`;
-
-  }
-
-});
-
+/* Scroll-linked hero motion is intentionally subtle. No layout-affecting parallax. */
 
 /* =========================
    MOTION DETAILS
 ========================= */
 
-/* Stagger elements as they enter the viewport */
+/* Stagger only direct visual groupings, not the whole page */
 const revealItems = document.querySelectorAll(".reveal");
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${(index % 4) * 75}ms`;
+revealItems.forEach(item => {
+  const parent = item.parentElement;
+  const siblings = parent ? [...parent.children].filter(el => el.classList.contains("reveal")) : [];
+  const index = siblings.indexOf(item);
+  item.style.setProperty("--reveal-delay", `${Math.max(0,index) * 65}ms`);
 });
 
 /* Gentle pointer movement on the hero grid */
@@ -2966,6 +3005,25 @@ connectBTC();
 
 setInterval(sampleBTCChart, 1000);
 
+</script>
+
+<script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  if (reducedMotion || coarsePointer || !window.Lenis) return;
+
+  document.documentElement.classList.add("lenis-enabled");
+  const lenis = new Lenis({
+    autoRaf:true,
+    duration:1.05,
+    smoothWheel:true,
+    syncTouch:false,
+    anchors:true
+  });
+  window.__vexarLenis = lenis;
+})();
 </script>
 
 <script async src="https://platform.x.com/widgets.js" charset="utf-8"></script>
