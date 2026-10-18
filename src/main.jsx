@@ -5,6 +5,7 @@ import FluxLines from './components/FluxLines.jsx';
 import IntroSplash from './components/IntroSplash.jsx';
 import ScrambledText from './components/ScrambledText.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
+import TechText from './components/TechText.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -107,5 +108,70 @@ if (whatIDoScrambledRoot) {
     >
       {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
     </ScrollReveal>
+  );
+}
+
+const contactTechTextRoot = document.getElementById('contact-tech-text-root');
+if (contactTechTextRoot) {
+  createRoot(contactTechTextRoot).render(
+    <div className="contact-tech-text-stack">
+      <div className="contact-tech-line">
+        <TechText
+          text="BUILD"
+          fontWeight={800}
+          fontSize={150}
+          reveal="letter"
+          dashLength={4}
+          dashGap={2}
+          specks={15}
+          intro="none"
+          introDuration={2}
+          clickKick
+          guides={false}
+          align="left"
+          color="#f2f4f7"
+          accentColor="#4d7cfe"
+          className="contact-tech-canvas"
+        />
+      </div>
+      <div className="contact-tech-line">
+        <TechText
+          text="SOMETHING"
+          fontWeight={800}
+          fontSize={150}
+          reveal="letter"
+          dashLength={4}
+          dashGap={2}
+          specks={15}
+          intro="none"
+          introDuration={2}
+          clickKick
+          guides={false}
+          align="left"
+          color="#4d7cfe"
+          accentColor="#f2f4f7"
+          className="contact-tech-canvas"
+        />
+      </div>
+      <div className="contact-tech-line">
+        <TechText
+          text="INTERESTING"
+          fontWeight={800}
+          fontSize={150}
+          reveal="letter"
+          dashLength={4}
+          dashGap={2}
+          specks={15}
+          intro="none"
+          introDuration={2}
+          clickKick
+          guides={false}
+          align="left"
+          color="#f2f4f7"
+          accentColor="#4d7cfe"
+          className="contact-tech-canvas"
+        />
+      </div>
+    </div>
   );
 }

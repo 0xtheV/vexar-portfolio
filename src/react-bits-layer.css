@@ -43,3 +43,14 @@ body.site-locked{overflow:hidden;height:100vh}
 .what-i-do-scroll-reveal .scroll-reveal-word{margin-right:.22em}
 .what-i-do-scroll-reveal .scroll-reveal-piece{will-change:opacity,filter,transform}
 @media(max-width:760px){.what-i-do-scroll-reveal .scroll-reveal-text{font-size:clamp(1.7rem,7vw,2.5rem);line-height:1.2}}
+
+/* TechText contact headline */
+.contact-tech-text-root{width:100%;margin:0 0 52px;max-width:100%}
+.contact-tech-text-stack{width:100%;display:flex;flex-direction:column;align-items:stretch}
+.contact-tech-line{position:relative;width:100%;height:clamp(95px,10vw,155px);overflow:hidden}
+.contact-tech-line .tech-text{width:100%;height:100%}
+.contact-tech-line .tech-text-canvas{width:100%;height:100%}
+@media(max-width:760px){
+ .contact-tech-text-root{margin-bottom:36px}
+ .contact-tech-line{height:clamp(64px,17vw,108px)}
+}
