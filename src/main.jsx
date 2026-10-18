@@ -16,6 +16,7 @@ const navItems = [
 
   { label: 'Case Studies', href: '#case-studies' },
   { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 const navRoot = document.getElementById('gooey-nav-root');
