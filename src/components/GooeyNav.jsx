@@ -734,6 +734,43 @@ const GooeyNav = ({
     engineRef.current?.go(current);
   }, [current]);
 
+  // Keep the active navigation pill synced with the section currently in view.
+  useEffect(() => {
+    let ticking = false;
+
+    const syncActiveSection = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const marker = Math.min(window.innerHeight * 0.34, 260);
+        let nextIndex = 0;
+
+        items.forEach((item, index) => {
+          if (!item.href || item.href === '#') return;
+          const section = document.getElementById(item.href.slice(1));
+          if (section && section.getBoundingClientRect().top <= marker) {
+            nextIndex = index;
+          }
+        });
+
+        if (nextIndex !== indexRef.current) {
+          if (activeIndex === undefined) setInnerIndex(nextIndex);
+          onChange?.(nextIndex, items[nextIndex]);
+        }
+        ticking = false;
+      });
+    };
+
+    window.addEventListener('scroll', syncActiveSection, { passive: true });
+    window.addEventListener('resize', syncActiveSection);
+    syncActiveSection();
+
+    return () => {
+      window.removeEventListener('scroll', syncActiveSection);
+      window.removeEventListener('resize', syncActiveSection);
+    };
+  }, [items, activeIndex, onChange]);
+
   useEffect(() => {
     engineRef.current?.refresh();
   }, [pillColor, palette, gooeyness, size, frame]);
