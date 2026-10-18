@@ -729,8 +729,14 @@ const TechText = ({
       let moving = false;
       glyphs.forEach((glyph, i) => {
         if (i === dragging) {
-          glyph.offset.x = approach(glyph.offset.x, pointer.x - grab.x, dt, 0.03);
-          glyph.offset.y = approach(glyph.offset.y, pointer.y - grab.y, dt, 0.03);
+          const targetX = pointer.x - grab.x;
+          const targetY = pointer.y - grab.y;
+          const minX = 8 - glyph.box.x1;
+          const maxX = width - 8 - glyph.box.x2;
+          const minY = 8 - glyph.box.y1;
+          const maxY = height - 8 - glyph.box.y2;
+          glyph.offset.x = approach(glyph.offset.x, Math.min(maxX, Math.max(minX, targetX)), dt, 0.03);
+          glyph.offset.y = approach(glyph.offset.y, Math.min(maxY, Math.max(minY, targetY)), dt, 0.03);
           glyph.velocity.x = 0;
           glyph.velocity.y = 0;
           moving = true;

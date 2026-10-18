@@ -69,3 +69,8 @@ body.site-locked{overflow:hidden;height:100vh}
 #site-particles-root .particles-canvas{position:absolute;inset:0;width:100%;height:100%}
 body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z-index:1}
 #intro-splash-root{z-index:10000}
+
+/* Keep TechText glyphs inside their visible canvas while dragging */
+.contact-tech-text-stack{width:100%;max-width:100%;overflow:visible}
+.contact-tech-line{width:100%;min-width:0;touch-action:pan-y}
+.contact-tech-line .tech-text-canvas{display:block;max-width:100%}
