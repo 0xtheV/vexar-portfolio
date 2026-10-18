@@ -100,15 +100,15 @@ if (whatIDoScrambledRoot) {
       mode="scrub"
       splitBy="words"
       effect="fade"
-      stagger={0.07}
+      stagger={0.05}
       duration={0.8}
-      smoothing={0.12}
-      wordAnimationEnd="bottom top"
-      baseOpacity={0.04}
+      smoothing={0}
+      wordAnimationEnd="bottom bottom"
+      baseOpacity={0.1}
       baseRotation={0}
-      baseOffset={8}
+      baseOffset={0}
       enableBlur={true}
-      blurStrength={5}
+      blurStrength={4}
     >
       {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
     </ScrollReveal>

@@ -132,3 +132,42 @@ body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z
 @media(max-width:760px){
  .what-i-do-scroll-reveal-root{font-size:clamp(28px,7.5vw,40px);line-height:1.12;letter-spacing:-.045em}
 }
+
+/* Match the React Bits ScrollReveal preview: readable line lengths and scroll-linked reveal */
+.what-i-do-scroll-reveal-root{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  font-size:clamp(30px,2.85vw,44px);
+  line-height:1.28;
+  letter-spacing:-.045em;
+  font-weight:650;
+  color:#F2F4F7;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin:0;
+  font-size:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  font-weight:inherit;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal-text{
+  display:block;
+  width:100%;
+  max-width:100%;
+  font-size:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  font-weight:inherit;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .scroll-reveal-word{margin-right:.14em}
+.what-i-do-scroll-reveal-root .scroll-reveal-piece{display:inline-block}
+@media(max-width:760px){
+ .what-i-do-scroll-reveal-root{font-size:clamp(25px,6.2vw,34px);line-height:1.3;letter-spacing:-.035em}
+}
