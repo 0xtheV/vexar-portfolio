@@ -1,0 +1,12 @@
+/* React Bits layers */
+.gooey-nav-root{display:flex;align-items:center;justify-content:flex-end;min-width:0}
+.gooey-nav-root .gooey-nav{--gn-ink:#f2f4f7;--gn-muted:#a7afbd;--gn-active-ink:#0b0d10;--gn-pill:#f2f4f7}
+.flux-lines-react-layer{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;opacity:.72}
+.hero-mascot{z-index:2}
+.hero-content{z-index:3}
+.hero-grid,.hero-glow{pointer-events:none}
+@media(max-width:760px){
+  .gooey-nav-root{justify-content:center;width:100%}
+  .nav-inner{flex-wrap:wrap;gap:14px}
+  .gooey-nav-root .gooey-nav{--gn-font:12px;--gn-x:10px;--gn-y:8px}
+}
