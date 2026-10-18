@@ -197,9 +197,9 @@ const blurTextConfig = {
   onAnimationComplete: () => console.log('Hero text animation completed!')
 };
 [
-  ['hero-blur-line-1', 'WEB3', 'hero-blur-white'],
+  ['hero-blur-line-1', 'COMMUNITY', 'hero-blur-white'],
   ['hero-blur-line-2', 'CONTENT &', 'hero-blur-outline-text'],
-  ['hero-blur-line-3', 'COMMUNITY', 'hero-blur-blue']
+  ['hero-blur-line-3', 'GROWTH', 'hero-blur-blue']
 ].forEach(([id, text, className]) => {
   const root = document.getElementById(id);
   if (root) {
