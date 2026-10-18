@@ -215,3 +215,56 @@ body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z
   .what-i-do-section .what-i-do-layout{grid-template-columns:1fr;gap:28px}
   .what-i-do-section .what-i-do-scroll-reveal-root{font-size:clamp(26px,7vw,36px);line-height:1.28;letter-spacing:-.035em}
 }
+
+
+/* Final mobile navigation and shared page atmosphere */
+body{
+  background:
+    radial-gradient(ellipse 110% 72% at 50% 12%, rgba(35,58,115,.28), transparent 74%),
+    var(--vexar-bg, #08090b);
+  background-attachment:fixed;
+}
+
+/* Keep the site navigation visible while scrolling. A broad selector above
+   accidentally changed the fixed header back to relative positioning. */
+body>nav{
+  position:fixed !important;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+}
+
+/* Do not scale the GooeyNav canvas: its measured indicator coordinates must
+   match its actual CSS pixels, otherwise the active pill drifts off the rail. */
+#gooey-nav-root{
+  transform:none !important;
+  transform-origin:center;
+  max-width:100%;
+  min-width:0;
+}
+.gooey-nav-root .gooey-nav{
+  max-width:100%;
+}
+.gooey-nav__stage,
+.gooey-nav__list{
+  max-width:100%;
+}
+@media(max-width:760px){
+  .nav-inner{
+    flex-wrap:wrap;
+    align-items:center;
+    gap:14px;
+  }
+  #gooey-nav-root{
+    width:100%;
+    max-width:100%;
+    display:flex;
+    justify-content:center;
+  }
+  .gooey-nav-root .gooey-nav{
+    --gn-font:12px;
+    --gn-x:10px;
+    --gn-y:8px;
+  }
+}
