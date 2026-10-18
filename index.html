@@ -1391,6 +1391,7 @@ footer{background:#0B0D10;border-top:1px solid rgba(242,244,247,.12)}
 </style>
 
   <link rel="stylesheet" href="FluxLines.css">
+  <link rel="stylesheet" href="/src/react-bits-layer.css">
 </head>
 
 <body>
@@ -1419,15 +1420,7 @@ VEXAR<span>.</span>FYI
 
 </a>
 
-<div class="nav-links">
-
-<a href="#work">WORK</a>
-<a href="#results">RESULTS</a>
-<a href="#warzone">WARZONE</a>
-<a href="#case-studies">CASE STUDIES</a>
-<a href="#about">ABOUT</a>
-
-</div>
+<div id="gooey-nav-root" class="gooey-nav-root" aria-label="Main navigation"></div>
 
 </div>
 
@@ -1439,7 +1432,7 @@ VEXAR<span>.</span>FYI
 <section class="hero">
 
 <div class="hero-grid"></div>
-<div class="flux-lines-container" aria-hidden="true"><canvas class="flux-lines-canvas" data-flux-lines></canvas></div>
+<div id="flux-lines-react" class="flux-lines-react-layer" aria-hidden="true"></div>
 
 <div class="hero-glow"></div>
 
@@ -3060,7 +3053,6 @@ setInterval(sampleBTCChart, 1000);
   });
 })();
 </script>
-
-  <script src="FluxLines.js"></script>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
