@@ -5,10 +5,11 @@ import FluxLines from './components/FluxLines.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
-  { label: 'Home', href: '#' },
   { label: 'Work', href: '#work' },
+  { label: 'Results', href: '#results' },
+  { label: 'Warzone', href: '#warzone' },
+  { label: 'Case Studies', href: '#case-studies' },
   { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
 ];
 
 const navRoot = document.getElementById('gooey-nav-root');
