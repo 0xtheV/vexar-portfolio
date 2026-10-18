@@ -96,3 +96,39 @@ body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z
 .what-i-do-scroll-reveal{opacity:1!important;visibility:visible!important}
 .what-i-do-scroll-reveal .scroll-reveal-text{display:block;overflow:visible}
 .what-i-do-scroll-reveal .scroll-reveal-word{display:inline-block;will-change:opacity,filter,transform}
+
+/* Final readable sizing for the What I Do scroll reveal */
+.what-i-do-scroll-reveal-root{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  font-size:clamp(30px,3.8vw,56px);
+  line-height:1.08;
+  letter-spacing:-.055em;
+  font-weight:700;
+  color:#F2F4F7;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal{
+  display:block;
+  width:100%;
+  max-width:100%;
+  margin:0;
+  line-height:inherit;
+  font-size:inherit;
+  letter-spacing:inherit;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal-text{
+  display:block;
+  width:100%;
+  font-size:inherit;
+  line-height:inherit;
+  letter-spacing:inherit;
+  overflow:visible;
+}
+.what-i-do-scroll-reveal-root .scroll-reveal-word{margin-right:.16em}
+.hero-period{display:none!important}
+@media(max-width:760px){
+ .what-i-do-scroll-reveal-root{font-size:clamp(28px,7.5vw,40px);line-height:1.12;letter-spacing:-.045em}
+}
