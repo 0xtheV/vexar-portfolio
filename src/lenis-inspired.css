@@ -111,3 +111,13 @@ footer{border:0!important;background:transparent}
  .marquee-track{animation:none}
  .case-card,.button,.reveal{transition:none!important}
 }
+
+
+/* Carry the same restrained navy atmosphere below the hero instead of a hard
+   blue-to-black cutoff between the first and second sections. */
+body{
+  background:
+    radial-gradient(ellipse 110% 72% at 50% 12%, rgba(35,58,115,.28), transparent 74%),
+    var(--vexar-bg, #08090b);
+  background-attachment:fixed;
+}
