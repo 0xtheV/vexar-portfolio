@@ -10,14 +10,32 @@ import BlurText from './components/BlurText.jsx';
 import './react-bits-layer.css';
 import './lenis-inspired.css';
 
+// Navigation is intentionally kept to four distinct destinations so it fits on phones.
 const navItems = [
   { label: 'Work', href: '#case-studies' },
   { label: 'Results', href: '#results' },
-
-  { label: 'Case Studies', href: '#case-studies' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
+
+// Classify the current viewing context by viewport width, not user-agent strings.
+// CSS media queries remain responsible for layout; this profile also lets effects
+// use lighter settings on smaller screens and updates when the viewport changes.
+function detectDeviceProfile() {
+  const width = Math.round(window.visualViewport?.width || window.innerWidth);
+  const device = width <= 600 ? 'mobile' : width <= 1024 ? 'tablet' : 'desktop';
+  const hasTouch = window.matchMedia('(pointer: coarse)').matches;
+  const hasHover = window.matchMedia('(any-hover: hover)').matches;
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.dataset.device = device;
+  document.documentElement.dataset.input = hasTouch ? 'touch' : 'pointer';
+  return { device, width, hasTouch, hasHover, reducedMotion };
+}
+
+const initialDeviceProfile = detectDeviceProfile();
+window.addEventListener('resize', detectDeviceProfile, { passive: true });
+window.addEventListener('orientationchange', detectDeviceProfile, { passive: true });
+window.visualViewport?.addEventListener('resize', detectDeviceProfile, { passive: true });
 
 const navRoot = document.getElementById('gooey-nav-root');
 if (navRoot) {
@@ -60,13 +78,13 @@ if (particlesRoot) {
   createRoot(particlesRoot).render(
     <Particles
       particleColors={['#ffffff']}
-      particleCount={200}
+      particleCount={initialDeviceProfile.reducedMotion ? 0 : initialDeviceProfile.device === 'mobile' ? 45 : initialDeviceProfile.device === 'tablet' ? 85 : 140}
       particleSpread={10}
       speed={0.1}
       particleBaseSize={100}
       glow={0.5}
       twinkle={0.3}
-      moveParticlesOnHover={true}
+      moveParticlesOnHover={initialDeviceProfile.hasHover && !initialDeviceProfile.reducedMotion}
       hoverEffect="parallax"
     />
   );
