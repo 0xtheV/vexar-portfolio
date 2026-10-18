@@ -110,3 +110,23 @@ if (scrambledRoot) {
     </ScrambledText>
   );
 }
+
+const whatIDoScrambledRoot = document.getElementById('what-i-do-scrambled-root');
+if (whatIDoScrambledRoot) {
+  createRoot(whatIDoScrambledRoot).render(
+    <ScrambledText
+      className="what-i-do-scrambled"
+      effect="scramble"
+      radius={100}
+      strength={1}
+      trail={0.6}
+      duration={1.2}
+      speed={0.5}
+      scrambleChars=".:"
+      clickBurst
+      intro
+    >
+      {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
+    </ScrambledText>
+  );
+}
