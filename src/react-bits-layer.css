@@ -29,3 +29,10 @@ body.site-locked{overflow:hidden;height:100vh}
 .intro-splash__button .star-border{font-size:12px;letter-spacing:.08em;text-transform:uppercase;min-height:52px;padding:0 30px}
 .intro-splash-exit{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease}
 @media(prefers-reduced-motion:reduce){.intro-splash-exit{transition:none}}
+
+/* ScrambledText in the hero copy */
+.hero-description{min-width:0;max-width:530px}
+.hero-description .scrambled-text{margin:0;max-width:100%;font-family:Inter,sans-serif;font-size:16px;font-weight:600;line-height:1.7;color:var(--muted);cursor:default}
+.hero-description .scrambled-text p{margin:0}
+.hero-description .scrambled-text-sr{position:absolute}
+@media(max-width:760px){.hero-description .scrambled-text{font-size:14px;line-height:1.65}}

@@ -4,6 +4,7 @@ import GooeyNav from './components/GooeyNav.jsx';
 import FluxLines from './components/FluxLines.jsx';
 import StarBorder from './components/StarBorder.jsx';
 import IntroSplash from './components/IntroSplash.jsx';
+import ScrambledText from './components/ScrambledText.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -87,5 +88,25 @@ if (fluxRoot) {
       mouseInteraction={true}
       clickSwirl={true}
     />
+  );
+}
+
+const scrambledRoot = document.getElementById('hero-scrambled-root');
+if (scrambledRoot) {
+  createRoot(scrambledRoot).render(
+    <ScrambledText
+      className="hero-scrambled-copy"
+      effect="scramble"
+      radius={100}
+      strength={1}
+      trail={0.6}
+      duration={1.2}
+      speed={0.5}
+      scrambleChars=".:"
+      clickBurst
+      intro
+    >
+      {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
+    </ScrambledText>
   );
 }
