@@ -11,7 +11,7 @@ import './react-bits-layer.css';
 import './lenis-inspired.css';
 
 const navItems = [
-  { label: 'Work', href: '#work' },
+  { label: 'Work', href: '#case-studies' },
   { label: 'Results', href: '#results' },
 
   { label: 'Case Studies', href: '#case-studies' },
@@ -196,9 +196,9 @@ const blurTextConfig = {
   onAnimationComplete: () => console.log('Hero text animation completed!')
 };
 [
-  ['hero-blur-line-1', 'MAKING CRYPTO', 'hero-blur-white'],
-  ['hero-blur-line-2', 'IMPOSSIBLE TO', 'hero-blur-outline-text'],
-  ['hero-blur-line-3', 'IGNORE', 'hero-blur-blue']
+  ['hero-blur-line-1', 'WEB3', 'hero-blur-white'],
+  ['hero-blur-line-2', 'CONTENT &', 'hero-blur-outline-text'],
+  ['hero-blur-line-3', 'COMMUNITY', 'hero-blur-blue']
 ].forEach(([id, text, className]) => {
   const root = document.getElementById(id);
   if (root) {
