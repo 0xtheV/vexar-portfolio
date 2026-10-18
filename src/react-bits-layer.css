@@ -54,3 +54,11 @@ body.site-locked{overflow:hidden;height:100vh}
  .contact-tech-text-root{margin-bottom:36px}
  .contact-tech-line{height:clamp(64px,17vw,108px)}
 }
+
+/* Isolated layout for the What I Do ScrollReveal mount */
+.what-i-do-scroll-reveal-root{width:100%;min-width:0;font-size:clamp(36px,5vw,72px);line-height:.98;letter-spacing:-.06em;font-weight:700;color:#F2F4F7}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal{width:100%;margin:0;transform-origin:0% 50%}
+.what-i-do-scroll-reveal-root .what-i-do-scroll-reveal-text{display:block;width:100%;font-size:inherit;line-height:inherit;letter-spacing:inherit;font-weight:inherit}
+.what-i-do-scroll-reveal-root .scroll-reveal-word{margin-right:.18em}
+.what-i-do-scroll-reveal-root .scroll-reveal-piece{display:inline-block}
+@media(max-width:760px){.what-i-do-scroll-reveal-root{font-size:42px;line-height:1.04}}

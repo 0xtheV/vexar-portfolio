@@ -100,6 +100,7 @@ if (whatIDoScrambledRoot) {
       stagger={0.05}
       duration={0.8}
       smoothing={0}
+      wordAnimationEnd="top center"
       baseOpacity={0.1}
       baseRotation={3}
       baseOffset={0}
