@@ -16,12 +16,12 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root{
-  --bg:#070707;
-  --text:#f4f4f1;
-  --muted:#888;
-  --dim:#555;
-  --line:#252525;
-  --accent:#dfff00;
+  --bg:#F8F3F0;
+  --text:#014BAA;
+  --muted:#496b99;
+  --dim:#6e84a3;
+  --line:rgba(1,75,170,.2);
+  --accent:#014BAA;
 }
 
 *{
@@ -1347,6 +1347,27 @@ footer{
 @media(prefers-reduced-motion:reduce){
   #heroScrollSubtitle{transition:none}
 }
+
+
+/* VEXAR ROYAL BLUE + LIGHT CREAM THEME */
+html,body{background:#F8F3F0!important;color:#014BAA}
+body{--bg:#F8F3F0;--text:#014BAA;--muted:#496b99;--dim:#6e84a3;--line:rgba(1,75,170,.2);--accent:#014BAA}
+::selection{background:#014BAA;color:#F8F3F0}
+nav{background:linear-gradient(to bottom,rgba(248,243,240,.98),rgba(248,243,240,.82))!important;border-bottom:1px solid rgba(1,75,170,.12)}
+.logo-image{border-color:rgba(1,75,170,.25)}
+.section,section,.hero,.intro,.results,.work,.case-studies,.journey,.skills,.about,.contact,.btc-section,.terminal-section,.warzone-section,.radar-section,footer{
+  background-color:#F8F3F0;
+}
+.section,.section-title,.stat,.work-item,.case-card,.skill,.achievement,.timeline-item,.btc-panel,.channel-block,.terminal-card,.radar-card{
+  border-color:rgba(1,75,170,.2)!important;
+}
+.button{background:#014BAA!important;color:#F8F3F0!important;border-color:#014BAA!important}
+.button:hover{background:#F8F3F0!important;color:#014BAA!important;border-color:#014BAA!important}
+.nav-links a::after,.typing-cursor{background:#014BAA}
+.hero h1 .outline{-webkit-text-stroke-color:#014BAA}
+.hero-description{color:#496b99!important}
+.cursor{background:#014BAA}
+.stat-number,.metric-value,.achievement-number,.work-number,.case-metric,.btc-price,.accent,.hero-highlight{color:#014BAA}
 
 </style>
 
