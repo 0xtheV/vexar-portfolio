@@ -11,7 +11,7 @@ import './react-bits-layer.css';
 const navItems = [
   { label: 'Work', href: '#work' },
   { label: 'Results', href: '#results' },
-  { label: 'Warzone', href: '#warzone' },
+
   { label: 'Case Studies', href: '#case-studies' },
   { label: 'About', href: '#about' },
 ];
