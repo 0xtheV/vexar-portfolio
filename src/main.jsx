@@ -97,18 +97,18 @@ if (whatIDoScrambledRoot) {
       containerClassName="what-i-do-scroll-reveal"
       textClassName="what-i-do-scroll-reveal-text"
       highlightColor={null}
-      mode="scrub"
+      mode="enter"
       splitBy="words"
       effect="fade"
-      stagger={0.05}
-      duration={0.8}
+      stagger={0.12}
+      duration={2.8}
       smoothing={0}
-      wordAnimationEnd="top center"
-      baseOpacity={0.1}
-      baseRotation={3}
-      baseOffset={0}
+      wordAnimationEnd="bottom center"
+      baseOpacity={0.04}
+      baseRotation={0}
+      baseOffset={12}
       enableBlur={true}
-      blurStrength={4}
+      blurStrength={8}
     >
       {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
     </ScrollReveal>
@@ -185,11 +185,11 @@ const blurTextConfig = {
   animateBy: 'words',
   direction: 'top',
   staggerFrom: 'start',
-  trigger: 'view',
-  delay: 200,
-  stepDuration: 0.35,
-  blur: 10,
-  distance: 50,
+  trigger: 'load',
+  delay: 320,
+  stepDuration: 0.65,
+  blur: 12,
+  distance: 42,
   onAnimationComplete: () => console.log('Hero text animation completed!')
 };
 [

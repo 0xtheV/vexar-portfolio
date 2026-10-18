@@ -87,3 +87,12 @@ body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z
  .hero-blur-heading{font-size:clamp(40px,10.6vw,64px);line-height:.98;letter-spacing:-.07em}
  .hero-blur-line .hero-blur-piece{white-space:normal;flex-wrap:wrap}
 }
+
+/* Keep animated hero text readable while each word settles */
+.hero-blur-heading{overflow:visible}
+.hero-blur-line{overflow:visible}
+.hero-blur-line .hero-blur-piece{min-height:1em;align-items:baseline}
+.what-i-do-scroll-reveal-root{min-height:2.5em}
+.what-i-do-scroll-reveal{opacity:1!important;visibility:visible!important}
+.what-i-do-scroll-reveal .scroll-reveal-text{display:block;overflow:visible}
+.what-i-do-scroll-reveal .scroll-reveal-word{display:inline-block;will-change:opacity,filter,transform}
