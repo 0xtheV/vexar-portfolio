@@ -1670,6 +1670,43 @@ h1,h2,h3,p,.timeline-title,.timeline-company,.timeline-copy,.case-summary,.case-
 @media(prefers-reduced-motion:reduce){
  .case-platform,.case-card,.button{transition:none!important}
 }
+
+/* Final layout corrections: prevent headline collisions and keep mobile navigation in one row */
+.big-statement{font-size:clamp(42px,8.2vw,122px);line-height:1.02;letter-spacing:-.065em;overflow-wrap:normal}
+.big-statement span{display:block;color:#7d8796;line-height:1.02;margin-top:.02em}
+.timeline-item{min-width:0}
+.timeline-title,.timeline-company,.timeline-copy{max-width:100%;overflow-wrap:anywhere;word-break:normal}
+.timeline-title{line-height:1.14}
+.case-platform,.case-outcome,.case-card{min-width:0}
+.case-platform-number{overflow-wrap:normal;word-break:normal}
+#gooey-nav-root,.gooey-nav-root{min-width:0;max-width:100%}
+@media(max-width:600px){
+  .big-statement{font-size:clamp(38px,10.4vw,64px);line-height:1.04;letter-spacing:-.055em}
+  .big-statement span{line-height:1.04;margin-top:.04em}
+  .timeline-title{font-size:clamp(24px,6.8vw,31px);line-height:1.15;letter-spacing:-.035em}
+  .timeline-company{font-size:13px;line-height:1.6}
+  .timeline-copy{font-size:13px;line-height:1.75;max-width:52ch}
+  .nav-inner{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+  #gooey-nav-root{width:100%;justify-content:stretch;transform:none!important}
+  #gooey-nav-root .gooey-nav{display:flex;width:100%;max-width:100%;justify-content:center;flex-wrap:nowrap;gap:2px;padding:5px}
+  #gooey-nav-root .gooey-nav__stage{width:100%;max-width:100%}
+  #gooey-nav-root .gooey-nav__list{width:100%;display:flex;justify-content:space-between;flex-wrap:nowrap;gap:0}
+  #gooey-nav-root .gooey-nav__item{min-width:0}
+  #gooey-nav-root .gooey-nav__link{font-size:11px;padding:9px 8px;gap:4px}
+  .case-platform-top{min-width:0}
+  .case-platform-top span{overflow-wrap:anywhere}
+}
+@media(min-width:601px) and (max-width:1024px){
+  .big-statement{font-size:clamp(54px,7.5vw,82px);line-height:1.02}
+  .timeline-item{padding-bottom:48px}
+}
+@media(orientation:landscape) and (max-height:500px){
+  .hero{min-height:0;padding-top:130px;padding-bottom:50px}
+  .hero-content{padding-top:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-mascot,.hero-mascot-image,.hero-glow,.status-dot{animation:none!important}
+}
 </style>
 
 </head>
