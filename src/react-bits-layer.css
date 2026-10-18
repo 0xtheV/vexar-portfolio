@@ -14,3 +14,18 @@
 .star-border-cta-root{display:inline-flex;align-items:center}
 .star-border-cta-root .star-border{font-family:inherit;font-size:12px;letter-spacing:.01em;min-height:42px;padding:0 22px;text-transform:uppercase;transition:transform .25s ease,box-shadow .25s ease}
 .star-border-cta-root .star-border:hover{transform:translateY(-2px)}
+
+/* Full-screen intro: site stays covered until the visitor starts */
+body.site-locked{overflow:hidden;height:100vh}
+#intro-splash-root{position:fixed;inset:0;z-index:10000;display:block;background:#0b0d10;color:#f2f4f7;overflow:hidden}
+.intro-splash{position:relative;isolation:isolate;display:flex;min-height:100vh;min-height:100svh;align-items:center;justify-content:center;text-align:center;padding:32px;overflow:hidden}
+.intro-splash__background{position:absolute;inset:0;z-index:-2;opacity:.8;pointer-events:none}
+.intro-splash__shade{position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(11,13,16,.16),rgba(11,13,16,.62) 72%,#0b0d10 100%);pointer-events:none}
+.intro-splash__content{width:min(760px,100%);display:flex;flex-direction:column;align-items:center;gap:24px}
+.intro-splash__eyebrow{font:11px 'DM Mono',monospace;letter-spacing:.2em;color:#a7afbd;text-transform:uppercase}
+.intro-splash__title{font-family:'Space Grotesk',Inter,sans-serif;font-size:clamp(42px,8vw,88px);font-weight:800;line-height:.94;letter-spacing:-.065em}
+.intro-splash__title span{display:block;color:#4d7cfe}
+.intro-splash__copy{max-width:460px;color:#a7afbd;font-size:14px;line-height:1.8}
+.intro-splash__button .star-border{font-size:12px;letter-spacing:.08em;text-transform:uppercase;min-height:52px;padding:0 30px}
+.intro-splash-exit{opacity:0;visibility:hidden;transition:opacity .45s ease,visibility .45s ease}
+@media(prefers-reduced-motion:reduce){.intro-splash-exit{transition:none}}

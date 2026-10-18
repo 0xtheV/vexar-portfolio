@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import GooeyNav from './components/GooeyNav.jsx';
 import FluxLines from './components/FluxLines.jsx';
 import StarBorder from './components/StarBorder.jsx';
+import IntroSplash from './components/IntroSplash.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -30,6 +31,21 @@ if (navRoot) {
       wobble={0.5}
       hoverEffect={true}
       onChange={(index, item) => console.log(index, item.label)}
+    />
+  );
+}
+
+const splashRoot = document.getElementById('intro-splash-root');
+if (splashRoot) {
+  createRoot(splashRoot).render(
+    <IntroSplash
+      onStart={() => {
+        document.body.classList.remove('site-locked');
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        splashRoot.classList.add('intro-splash-exit');
+        window.setTimeout(() => splashRoot.remove(), 500);
+      }}
     />
   );
 }
