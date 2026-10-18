@@ -1452,6 +1452,52 @@ footer{background:#0B0D10;border-top:0}
 }
 </style>
 
+
+<style id="case-study-clarity-refresh">
+/* Case studies should explain the work before presenting the numbers */
+.case-grid-clear { grid-template-columns:minmax(0,1fr); gap:22px; margin-top:38px; }
+.case-grid-clear .case-card { padding:clamp(22px,4vw,48px); }
+.case-grid-clear .case-card h3 { max-width:1000px; margin:30px 0 18px; font-size:clamp(44px,7vw,88px); line-height:.94; }
+.case-grid-clear .case-summary { max-width:800px; color:#c1c6d0; font-size:clamp(15px,1.4vw,18px); line-height:1.8; }
+.case-outcome-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:28px; }
+.case-outcome { padding:20px; border:1px solid #292f3a; background:#101318; }
+.case-outcome-label { display:block; color:#7e9bff; font:10px "DM Mono",monospace; letter-spacing:.1em; margin-bottom:12px; }
+.case-outcome strong { display:block; font-size:18px; line-height:1.35; color:#f2f4f7; }
+.case-outcome p,.case-sample-note p { margin-top:8px; color:#a7afbd; font-size:13px; line-height:1.7; }
+.case-platform-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-top:28px; }
+.case-platform { min-width:0; padding:20px; border:1px solid #2a303b; background:linear-gradient(160deg,rgba(77,124,254,.055),transparent 45%),#0d1015; }
+.case-platform-top { display:flex; justify-content:space-between; gap:10px; color:#8ca6ff; font:10px "DM Mono",monospace; letter-spacing:.06em; }
+.case-platform-top span:last-child { color:#858c99; text-align:right; font-size:9px; }
+.case-platform-number { margin-top:28px; color:#6e91ff; font-size:clamp(38px,4vw,58px); font-weight:800; letter-spacing:-.07em; line-height:1; }
+.case-platform-caption { margin-top:7px; color:#a7afbd; font:10px "DM Mono",monospace; }
+.case-platform-secondary { display:flex; flex-wrap:wrap; gap:10px 16px; margin-top:20px; padding-top:16px; border-top:1px solid #282e38; color:#a7afbd; font-size:12px; line-height:1.5; }
+.case-platform-secondary strong { color:#f2f4f7; }
+.case-more { margin-top:18px; border-top:1px solid #282e38; padding-top:14px; }
+.case-more summary { color:#d8deea; font-size:12px; cursor:pointer; list-style:none; }
+.case-more summary::-webkit-details-marker { display:none; }
+.case-more summary::after { content:"+"; float:right; color:#7e9bff; font-size:16px; line-height:12px; }
+.case-more[open] summary::after { content:"−"; }
+.case-more-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:16px; }
+.case-more-grid span { color:#a7afbd; font-size:11px; line-height:1.6; }
+.case-more-grid strong { display:block; color:#f2f4f7; font-size:16px; margin-bottom:3px; }
+.case-period-note { margin-top:12px; color:#858c99; font-size:10px; line-height:1.6; }
+.case-inline-link { display:inline-block; margin-top:14px; color:#8ca6ff; font:10px "DM Mono",monospace; }
+.case-sample-note { margin-top:24px; padding:18px 20px; border-left:2px solid #4d7cfe; background:#101318; }
+.case-grid-clear .case-foot { margin-top:30px; }
+@media(max-width:900px) {
+  .case-platform-grid { grid-template-columns:1fr; }
+  .case-platform-number { margin-top:20px; }
+}
+@media(max-width:600px) {
+  .case-outcome-grid { grid-template-columns:1fr; }
+  .case-grid-clear .case-card { padding:20px; }
+  .case-grid-clear .case-card h3 { font-size:clamp(38px,11vw,58px); }
+  .case-platform { padding:16px; }
+  .case-platform-top { flex-direction:column; }
+  .case-platform-top span:last-child { text-align:left; }
+}
+</style>
+
 </head>
 
 <body>
@@ -1701,85 +1747,86 @@ CRYPTERA VIDEO VIEW GROWTH
       <div class="label">CASE STUDIES</div>
     </div>
 
-    <div class="case-grid case-grid-updated">
+    <div class="case-grid case-grid-updated case-grid-clear">
       <article class="case-card case-card-wide reveal">
         <div>
-          <div class="case-card-top"><span>COMMUNITY + SOCIAL GROWTH</span><span class="case-card-mark">CRYPTERA ↗</span></div>
-          <h3>ONE BRAND.<br>THREE CHANNELS.</h3>
-          <p><strong>My role:</strong> support the day-to-day content operation across X, YouTube and Instagram. I research timely crypto and market angles, write platform-native posts, prepare audience-facing updates, support short-form video distribution, and adapt messaging to each platform. The numbers below are account-level results from the supplied analytics, not results attributable to one post.</p>
-          <div class="case-tags"><span>SOCIAL STRATEGY</span><span>VIDEO DISTRIBUTION</span><span>COMMUNITY OPERATIONS</span><span>CONTENT SYSTEMS</span></div>
+          <div class="case-card-top"><span>COMMUNITY · CONTENT · DISTRIBUTION</span><span class="case-card-mark">CRYPTERA ↗</span></div>
+          <h3>ONE CREATOR.<br>THREE PLATFORMS.</h3>
+          <p class="case-summary">I support the content operation for a creator brand across X, YouTube and Instagram. My work includes researching timely topics, writing platform-native copy, coordinating updates and helping distribute short-form video.</p>
 
-          <div class="channel-block">
-            <div class="channel-heading"><span>X / TWITTER</span><span>SUPPLIED ANALYTICS SNAPSHOT · PERIOD NOT SHOWN</span></div>
-            <div class="case-metrics case-metrics-4">
-              <div class="case-metric"><strong>2.1M</strong><span>IMPRESSIONS</span></div>
-              <div class="case-metric"><strong>21.2K</strong><span>ENGAGEMENTS</span></div>
-              <div class="case-metric"><strong>0.9%</strong><span>ENGAGEMENT RATE</span></div>
-              <div class="case-metric"><strong>3.1K</strong><span>PROFILE VISITS</span></div>
-            </div>
-            <div class="case-metrics case-metrics-4 case-metrics-secondary">
-              <div class="case-metric"><strong>14.5K</strong><span>LIKES</span></div>
-              <div class="case-metric"><strong>1K</strong><span>REPLIES</span></div>
-              <div class="case-metric"><strong>1.1K</strong><span>REPOSTS</span></div>
-              <div class="case-metric"><strong>1.1K</strong><span>BOOKMARKS</span></div>
-            </div>
-            <div class="case-metrics case-metrics-4 case-metrics-secondary">
-              <div class="case-metric"><strong>296</strong><span>SHARES</span></div>
-            </div>
+          <div class="case-outcome-grid">
+            <div class="case-outcome"><span class="case-outcome-label">THE CHALLENGE</span><strong>Stay consistent across channels</strong><p>Each platform needs its own format and voice, without losing the creator's overall identity.</p></div>
+            <div class="case-outcome"><span class="case-outcome-label">MY CONTRIBUTION</span><strong>Research to distribution</strong><p>Content research, copywriting, channel updates, audience-facing communication and video distribution support.</p></div>
           </div>
 
-          <div class="channel-block">
-            <div class="channel-heading"><span>YOUTUBE</span><span>19 JUL–16 OCT 2026 · STUDIO EXPORT</span></div>
-            <div class="case-metrics case-metrics-4">
-              <div class="case-metric"><strong>3.12M</strong><span>VIEWS</span></div>
-              <div class="case-metric"><strong>28.9K</strong><span>WATCH HOURS</span></div>
-              <div class="case-metric"><strong>14,477</strong><span>SUBSCRIBERS GAINED</span></div>
-              <div class="case-metric"><strong>5.45%</strong><span>THUMBNAIL CTR</span></div>
-            </div>
-            <div class="case-highlight">
-              <span class="case-highlight-label">TOP VIDEO IN THE PROVIDED EXPORT</span>
-              <a href="https://www.youtube.com/watch?v=Yg05ZAO8I7c" target="_blank" rel="noopener noreferrer">“CRT = 🔥🔥” · 363.8K VIEWS · 3,152 SUBSCRIBERS GAINED ↗</a>
-            </div>
-          </div>
+          <div class="case-platform-grid">
+            <section class="case-platform">
+              <div class="case-platform-top"><span>X / TWITTER</span><span>ANALYTICS SNAPSHOT</span></div>
+              <div class="case-platform-number">2.1M</div>
+              <div class="case-platform-caption">IMPRESSIONs</div>
+              <div class="case-platform-secondary"><span><strong>21.2K</strong> engagements</span><span><strong>3.1K</strong> profile visits</span></div>
+              <details class="case-more">
+                <summary>See all X metrics</summary>
+                <div class="case-more-grid">
+                  <span><strong>0.9%</strong> engagement rate</span><span><strong>14.5K</strong> likes</span><span><strong>1K</strong> replies</span><span><strong>1.1K</strong> reposts</span><span><strong>1.1K</strong> bookmarks</span><span><strong>296</strong> shares</span>
+                </div>
+                <p class="case-period-note">Reporting period not visible in the supplied screenshot.</p>
+              </details>
+            </section>
 
-          <div class="channel-block">
-            <div class="channel-heading"><span>INSTAGRAM</span><span>9 SEP–9 OCT 2026 · 30 DAYS</span></div>
-            <div class="case-metrics case-metrics-4">
-              <div class="case-metric"><strong>520K</strong><span>REEL VIEWS</span></div>
-              <div class="case-metric"><strong>910K</strong><span>VIEWERS</span></div>
-              <div class="case-metric"><strong>24,661</strong><span>FOLLOWERS</span></div>
-              <div class="case-metric"><strong>41</strong><span>REELS IN REPORT</span></div>
-            </div>
-            <div class="case-metrics case-metrics-4 case-metrics-secondary">
-              <div class="case-metric"><strong>34K</strong><span>LIKES</span></div>
-              <div class="case-metric"><strong>594</strong><span>COMMENTS</span></div>
-              <div class="case-metric"><strong>10K</strong><span>SHARES</span></div>
-              <div class="case-metric"><strong>16K</strong><span>SAVES</span></div>
-            </div>
+            <section class="case-platform">
+              <div class="case-platform-top"><span>YOUTUBE</span><span>19 JUL–16 OCT 2026</span></div>
+              <div class="case-platform-number">3.12M</div>
+              <div class="case-platform-caption">VIEWS</div>
+              <div class="case-platform-secondary"><span><strong>28.9K</strong> watch hours</span><span><strong>14,477</strong> subscribers gained</span></div>
+              <details class="case-more">
+                <summary>See video performance</summary>
+                <div class="case-more-grid">
+                  <span><strong>5.45%</strong> thumbnail CTR</span>
+                  <span><strong>363.8K</strong> views on the top video</span>
+                  <span><strong>3,152</strong> subscribers gained from the top video</span>
+                </div>
+                <a class="case-inline-link" href="https://www.youtube.com/watch?v=Yg05ZAO8I7c" target="_blank" rel="noopener noreferrer">Watch the referenced video ↗</a>
+              </details>
+            </section>
+
+            <section class="case-platform">
+              <div class="case-platform-top"><span>INSTAGRAM</span><span>9 SEP–9 OCT 2026</span></div>
+              <div class="case-platform-number">520K</div>
+              <div class="case-platform-caption">REEL VIEWS · 30 DAYS</div>
+              <div class="case-platform-secondary"><span><strong>910K</strong> viewers</span><span><strong>24,661</strong> followers</span></div>
+              <details class="case-more">
+                <summary>See Instagram activity</summary>
+                <div class="case-more-grid">
+                  <span><strong>41</strong> Reels in report</span><span><strong>34K</strong> likes</span><span><strong>594</strong> comments</span><span><strong>10K</strong> shares</span><span><strong>16K</strong> saves</span>
+                </div>
+              </details>
+            </section>
           </div>
 
           <div class="case-evidence-links">
-            <a href="https://x.com/thecryptera" target="_blank" rel="noopener noreferrer">VIEW CRYPTERA ON X ↗</a>
-            <a href="https://www.youtube.com/watch?v=Yg05ZAO8I7c" target="_blank" rel="noopener noreferrer">VIEW TOP YOUTUBE VIDEO ↗</a>
-            <a href="https://www.instagram.com/highiqtrades/" target="_blank" rel="noopener noreferrer">VIEW INSTAGRAM PROFILE ↗</a>
+            <a href="https://x.com/thecryptera" target="_blank" rel="noopener noreferrer">VIEW X PROFILE ↗</a>
+            <a href="https://www.youtube.com/watch?v=Yg05ZAO8I7c" target="_blank" rel="noopener noreferrer">VIEW FEATURED VIDEO ↗</a>
+            <a href="https://www.instagram.com/highiqtrades/" target="_blank" rel="noopener noreferrer">VIEW INSTAGRAM ↗</a>
           </div>
-          <p class="case-source-note">Sources: supplied X analytics screenshot (reporting period not visible); YouTube Studio CSV export (19 Jul–16 Oct 2026); Instagram Insights export (9 Sep–9 Oct 2026). Instagram engagement totals are rounded as displayed in the export. Results are account-level; reporting windows differ by platform.</p>
+          <p class="case-source-note">Metrics come from supplied account analytics and exports. They describe account-level results, not the impact of a single post or solely my individual contribution. Reporting periods differ by platform.</p>
         </div>
-        <div class="case-foot"><strong>COMMUNITY, CONTENT & DISTRIBUTION</strong><span>01 / 02</span></div>
+        <div class="case-foot"><strong>COMMUNITY, CONTENT & DISTRIBUTION</strong><span>CRYPTERA</span></div>
       </article>
 
-      <article class="case-card reveal">
+      <article class="case-card reveal case-card-maddy">
         <div>
-          <div class="case-card-top"><span>TRADING CONTENT</span><span class="case-card-mark">MADDY ↗</span></div>
-          <h3>MADDY</h3>
-          <p><strong>My role:</strong> turn market developments into clear, timely content for a trading audience. This includes crypto and gold market updates, macro-event explainers, structured trade-call formatting, risk-management reminders and social posts that direct the audience to the right channel. I focus on clarity and consistency, not making unsupported trading promises.</p>
-          <div class="case-tags"><span>GOLD / XAUUSD</span><span>MARKET UPDATES</span><span>TRADE FORMATTING</span><span>TELEGRAM</span></div>
-          <div class="case-metrics">
-            <div class="case-metric"><strong>DAILY</strong><span>MARKET-LED COMMUNICATION</span></div>
-            <div class="case-metric"><strong>RISK</strong><span>STRUCTURED TRADE FORMATTING</span></div>
+          <div class="case-card-top"><span>MARKET COMMUNICATION</span><span class="case-card-mark">MADDY ↗</span></div>
+          <h3>CLARITY WHEN<br>MARKETS MOVE.</h3>
+          <p class="case-summary">I turn fast-moving crypto, gold and macro developments into concise posts a trading audience can understand and act on responsibly.</p>
+          <div class="case-outcome-grid">
+            <div class="case-outcome"><span class="case-outcome-label">WHAT I HANDLE</span><strong>Research to publish-ready copy</strong><p>Market updates, macro explainers, structured trade-call formatting, risk reminders and channel-specific CTAs.</p></div>
+            <div class="case-outcome"><span class="case-outcome-label">HOW I APPROACH IT</span><strong>Clear, consistent, risk-aware</strong><p>Prioritise the key information, keep the format scannable and avoid unsupported claims or promises.</p></div>
           </div>
+          <div class="case-tags"><span>MARKET RESEARCH</span><span>CONTENT WRITING</span><span>TRADE FORMATTING</span><span>TELEGRAM</span></div>
+          <div class="case-sample-note"><span class="case-outcome-label">CONTENT EXAMPLES</span><p>Crypto and gold market updates · CPI/PPI scenario explainers · Structured trade posts · Risk-management reminders</p></div>
         </div>
-        <div class="case-foot"><strong>CLARITY UNDER MARKET PRESSURE</strong><span>02 / 02</span></div>
+        <div class="case-foot"><strong>MARKET-LED CONTENT</strong><span>MADDY</span></div>
       </article>
     </div>
   </div>
