@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import GooeyNav from './components/GooeyNav.jsx';
 import FluxLines from './components/FluxLines.jsx';
+import StarBorder from './components/StarBorder.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -30,6 +31,31 @@ if (navRoot) {
       hoverEffect={true}
       onChange={(index, item) => console.log(index, item.label)}
     />
+  );
+}
+
+const ctaRoot = document.getElementById('star-border-cta-root');
+if (ctaRoot) {
+  createRoot(ctaRoot).render(
+    <StarBorder
+      as="a"
+      href="#work"
+      color="#ffffff"
+      trailColor="#ffffff"
+      duration={4}
+      direction="clockwise"
+      stars={1}
+      trailLength={0.3}
+      thickness={1}
+      radius={12}
+      glow={0.6}
+      hover="lap"
+      sparkle={false}
+      clickPulse
+      theme="dark"
+    >
+      Get started
+    </StarBorder>
   );
 }
 

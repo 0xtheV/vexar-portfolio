@@ -759,8 +759,20 @@ const GooeyNav = ({
         className: 'gooey-nav__link',
         'aria-current': index === current ? 'page' : undefined,
         onClick: event => {
-          if (!item.href || item.href === '#') event.preventDefault();
           select(index);
+          if (!item.href || item.href === '#') {
+            event.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            return;
+          }
+          const targetId = item.href.slice(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            event.preventDefault();
+            window.history.pushState(null, '', item.href);
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
         }
       };
       return (

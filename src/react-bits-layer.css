@@ -10,3 +10,7 @@
   .nav-inner{flex-wrap:wrap;gap:14px}
   .gooey-nav-root .gooey-nav{--gn-font:12px;--gn-x:10px;--gn-y:8px}
 }
+
+.star-border-cta-root{display:inline-flex;align-items:center}
+.star-border-cta-root .star-border{font-family:inherit;font-size:12px;letter-spacing:.01em;min-height:42px;padding:0 22px;text-transform:uppercase;transition:transform .25s ease,box-shadow .25s ease}
+.star-border-cta-root .star-border:hover{transform:translateY(-2px)}
