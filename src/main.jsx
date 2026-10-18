@@ -6,6 +6,7 @@ import ScrambledText from './components/ScrambledText.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import TechText from './components/TechText.jsx';
 import Particles from './components/Particles.jsx';
+import BlurText from './components/BlurText.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -178,3 +179,28 @@ if (contactTechTextRoot) {
     </div>
   );
 }
+
+const blurTextConfig = {
+  effect: 'blur',
+  animateBy: 'words',
+  direction: 'top',
+  staggerFrom: 'start',
+  trigger: 'view',
+  delay: 200,
+  stepDuration: 0.35,
+  blur: 10,
+  distance: 50,
+  onAnimationComplete: () => console.log('Hero text animation completed!')
+};
+[
+  ['hero-blur-line-1', 'MAKING CRYPTO', 'hero-blur-white'],
+  ['hero-blur-line-2', 'IMPOSSIBLE TO', 'hero-blur-outline-text'],
+  ['hero-blur-line-3', 'IGNORE', 'hero-blur-blue']
+].forEach(([id, text, className]) => {
+  const root = document.getElementById(id);
+  if (root) {
+    createRoot(root).render(
+      <BlurText text={text} className={`hero-blur-piece ${className}`} {...blurTextConfig} />
+    );
+  }
+});

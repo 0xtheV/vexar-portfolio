@@ -74,3 +74,16 @@ body>nav,body>section,body>footer,body>.marquee,body>.cursor{position:relative;z
 .contact-tech-text-stack{width:100%;max-width:100%;overflow:visible}
 .contact-tech-line{width:100%;min-width:0;touch-action:pan-y}
 .contact-tech-line .tech-text-canvas{display:block;max-width:100%}
+
+/* React Bits BlurText hero headline */
+.hero-blur-heading{max-width:1300px}
+.hero-blur-line{display:inline-block;max-width:100%;vertical-align:baseline}
+.hero-blur-line .hero-blur-piece{display:inline-flex;flex-wrap:nowrap;margin:0;padding:0;font:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;white-space:nowrap}
+.hero-blur-line .hero-blur-piece>span:not([style]){display:inline}
+.hero-blur-outline{color:transparent;-webkit-text-stroke:1px #555}
+.hero-blur-outline-text{color:transparent!important;-webkit-text-stroke:1px #555}
+.hero-blur-blue{color:var(--accent)!important}
+@media(max-width:760px){
+ .hero-blur-heading{font-size:clamp(40px,10.6vw,64px);line-height:.98;letter-spacing:-.07em}
+ .hero-blur-line .hero-blur-piece{white-space:normal;flex-wrap:wrap}
+}
