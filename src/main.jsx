@@ -2,9 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import GooeyNav from './components/GooeyNav.jsx';
 import FluxLines from './components/FluxLines.jsx';
-import StarBorder from './components/StarBorder.jsx';
 import IntroSplash from './components/IntroSplash.jsx';
 import ScrambledText from './components/ScrambledText.jsx';
+import ScrollReveal from './components/ScrollReveal.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -51,31 +51,6 @@ if (splashRoot) {
   );
 }
 
-const ctaRoot = document.getElementById('star-border-cta-root');
-if (ctaRoot) {
-  createRoot(ctaRoot).render(
-    <StarBorder
-      as="a"
-      href="#work"
-      color="#ffffff"
-      trailColor="#ffffff"
-      duration={4}
-      direction="clockwise"
-      stars={1}
-      trailLength={0.3}
-      thickness={1}
-      radius={12}
-      glow={0.6}
-      hover="lap"
-      sparkle={false}
-      clickPulse
-      theme="dark"
-    >
-      Get started
-    </StarBorder>
-  );
-}
-
 const fluxRoot = document.getElementById('flux-lines-react');
 if (fluxRoot) {
   createRoot(fluxRoot).render(
@@ -114,19 +89,23 @@ if (scrambledRoot) {
 const whatIDoScrambledRoot = document.getElementById('what-i-do-scrambled-root');
 if (whatIDoScrambledRoot) {
   createRoot(whatIDoScrambledRoot).render(
-    <ScrambledText
-      className="what-i-do-scrambled"
-      effect="scramble"
-      radius={100}
-      strength={1}
-      trail={0.6}
-      duration={1.2}
-      speed={0.5}
-      scrambleChars=".:"
-      clickBurst
-      intro
+    <ScrollReveal
+      containerClassName="what-i-do-scroll-reveal"
+      textClassName="what-i-do-scroll-reveal-text"
+      highlightColor={null}
+      mode="scrub"
+      splitBy="words"
+      effect="fade"
+      stagger={0.05}
+      duration={0.8}
+      smoothing={0}
+      baseOpacity={0.1}
+      baseRotation={3}
+      baseOffset={0}
+      enableBlur={true}
+      blurStrength={4}
     >
       {'I build communities people want to stay in and help them become active contributors through clear communication, strong relationships, ecosystem growth and content that gives people a reason to care'}
-    </ScrambledText>
+    </ScrollReveal>
   );
 }
