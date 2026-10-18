@@ -8,6 +8,7 @@ import TechText from './components/TechText.jsx';
 import Particles from './components/Particles.jsx';
 import BlurText from './components/BlurText.jsx';
 import './react-bits-layer.css';
+import './lenis-inspired.css';
 
 const navItems = [
   { label: 'Work', href: '#work' },
