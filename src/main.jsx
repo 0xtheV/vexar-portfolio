@@ -1,11 +1,11 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import GooeyNav from './components/GooeyNav.jsx';
-import FluxLines from './components/FluxLines.jsx';
 import IntroSplash from './components/IntroSplash.jsx';
 import ScrambledText from './components/ScrambledText.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import TechText from './components/TechText.jsx';
+import Particles from './components/Particles.jsx';
 import './react-bits-layer.css';
 
 const navItems = [
@@ -52,17 +52,19 @@ if (splashRoot) {
   );
 }
 
-const fluxRoot = document.getElementById('flux-lines-react');
-if (fluxRoot) {
-  createRoot(fluxRoot).render(
-    <FluxLines
-      colors={['#ffffff', '#ffffff', '#ffffff']}
-      glow={2}
-      rimWidth={0.2}
-      lineWidth={1}
-      flowDirection="down"
-      mouseInteraction={true}
-      clickSwirl={true}
+const particlesRoot = document.getElementById('site-particles-root');
+if (particlesRoot) {
+  createRoot(particlesRoot).render(
+    <Particles
+      particleColors={['#ffffff']}
+      particleCount={200}
+      particleSpread={10}
+      speed={0.1}
+      particleBaseSize={100}
+      glow={0.5}
+      twinkle={0.3}
+      moveParticlesOnHover={true}
+      hoverEffect="parallax"
     />
   );
 }
