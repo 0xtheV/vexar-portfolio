@@ -799,17 +799,20 @@ const GooeyNav = ({
           select(index);
           if (!item.href || item.href === '#') {
             event.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
           }
-          const targetId = item.href.slice(1);
-          const target = document.getElementById(targetId);
-          if (target) {
-            event.preventDefault();
-            window.history.pushState(null, '', item.href);
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+
+          const target = document.querySelector(item.href);
+          if (!target) return;
+
+          event.preventDefault();
+          window.history.pushState(null, '', item.href);
+          const fixedNav = document.querySelector('body > nav');
+          const navOffset = fixedNav ? fixedNav.getBoundingClientRect().height : 0;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - navOffset - 18;
+          window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
         }
       };
       return (
