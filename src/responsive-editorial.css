@@ -89,7 +89,8 @@
   }
 
   #about {
-    padding-top: 118px;
+    /* The fixed header is handled by scroll-margin; don't add a second header-sized gap. */
+    padding-top: 82px;
     scroll-margin-top: 100px;
   }
 
