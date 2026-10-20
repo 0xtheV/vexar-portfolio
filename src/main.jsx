@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import IntroSplash from './components/IntroSplash.jsx';
-import IntroSplash from './components/IntroSplash.jsx';
 import ScrambledText from './components/ScrambledText.jsx';
 import ScrollReveal from './components/ScrollReveal.jsx';
 import TechText from './components/TechText.jsx';
