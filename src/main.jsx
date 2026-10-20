@@ -9,6 +9,7 @@ import Particles from './components/Particles.jsx';
 import BlurText from './components/BlurText.jsx';
 import './react-bits-layer.css';
 import './lenis-inspired.css';
+import './responsive-editorial.css';
 
 // Navigation is intentionally kept to four distinct destinations so it fits on phones.
 const navItems = [
