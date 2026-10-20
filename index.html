@@ -2039,6 +2039,36 @@ CRYPTERA VIDEO VIEW GROWTH
         </div>
         <div class="case-foot"><strong>MARKET-LED CONTENT</strong><span>MADDY</span></div>
       </article>
+
+      <article class="case-card reveal">
+        <div>
+          <div class="case-card-top"><span>PERSONAL BRAND · CONTENT · RESEARCH</span><span class="case-card-mark">VEXAR ↗</span></div>
+          <h3>BUILDING A<br>PUBLIC VOICE.</h3>
+          <p class="case-summary">Vexar is my personal operating system for crypto content, market research, community work and social growth—built to turn consistent publishing into long-term trust.</p>
+          <div class="case-outcome-grid">
+            <div class="case-outcome"><span class="case-outcome-label">THE FOCUS</span><strong>Useful market context</strong><p>Research-led posts, crypto culture commentary and a clear point of view for people navigating fast-moving markets.</p></div>
+            <div class="case-outcome"><span class="case-outcome-label">THE SYSTEM</span><strong>Consistency over noise</strong><p>One identity across X, Telegram, Instagram and YouTube, with every format adapted to how people actually use the platform.</p></div>
+          </div>
+          <div class="case-tags"><span>CRYPTO RESEARCH</span><span>COMMUNITY</span><span>CONTENT STRATEGY</span><span>GROWTH</span></div>
+          <div class="case-evidence-links"><a href="https://vexar.fyi" target="_blank" rel="noopener noreferrer">OPEN VEXAR.FYI ↗</a><a href="https://x.com/0xVexar" target="_blank" rel="noopener noreferrer">VIEW PERSONAL X ↗</a></div>
+        </div>
+        <div class="case-foot"><strong>PERSONAL BRAND & GROWTH</strong><span>VEXAR.FYI</span></div>
+      </article>
+
+      <article class="case-card reveal">
+        <div>
+          <div class="case-card-top"><span>WEB · IDENTITY · EXPERIENCE</span><span class="case-card-mark">PORTFOLIO ↗</span></div>
+          <h3>A PORTFOLIO<br>WITH A POINT OF VIEW.</h3>
+          <p class="case-summary">A living portfolio for my work across community management, content operations, creator relations and social growth.</p>
+          <div class="case-outcome-grid">
+            <div class="case-outcome"><span class="case-outcome-label">THE BRIEF</span><strong>Make the work legible</strong><p>Turn a multi-platform career into a focused story with real projects, evidence and a clear way to start a conversation.</p></div>
+            <div class="case-outcome"><span class="case-outcome-label">THE APPROACH</span><strong>Editorial, not generic</strong><p>Dark visual language, bold type, generous whitespace and motion that supports the content instead of competing with it.</p></div>
+          </div>
+          <div class="case-tags"><span>REACT</span><span>VITE</span><span>EDITORIAL UI</span><span>RESPONSIVE</span></div>
+          <div class="case-evidence-links"><a href="https://github.com/0xtheV/vexar-portfolio" target="_blank" rel="noopener noreferrer">VIEW SOURCE ↗</a><a href="https://vexar.fyi" target="_blank" rel="noopener noreferrer">VIEW LIVE SITE ↗</a></div>
+        </div>
+        <div class="case-foot"><strong>WEB DESIGN & DEVELOPMENT</strong><span>VEXAR.FYI</span></div>
+      </article>
     </div>
   </div>
 </section>
@@ -2793,361 +2823,7 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
 }
 
 
-/* =========================
-   LIVE BTC
-========================= */
-
-const canvas =
-document.getElementById("btcChart");
-
-const ctx =
-canvas.getContext("2d");
-
-const priceElement =
-document.getElementById("btcPrice");
-
-const changeElement =
-document.getElementById("btcChange");
-
-const updatedElement =
-document.getElementById("btcUpdated");
-
-
-let prices = [];
-
-let previousPrice = null;
-
-let ws = null;
-
-
-/* resize canvas */
-
-function resizeCanvas(){
-
-  const rect =
-    canvas.getBoundingClientRect();
-
-  const dpr =
-    window.devicePixelRatio || 1;
-
-  canvas.width =
-    rect.width * dpr;
-
-  canvas.height =
-    rect.height * dpr;
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-  drawChart();
-
-}
-
-
-/* draw */
-
-function drawChart(){
-
-  if(prices.length < 2) return;
-
-  const width = canvas.clientWidth;
-  const height = canvas.clientHeight;
-  if (!width || !height) return;
-
-  ctx.clearRect(0, 0, width, height);
-
-  const padX = 8;
-  const padY = 22;
-  const minValue = Math.min(...prices);
-  const maxValue = Math.max(...prices);
-  const rawRange = maxValue - minValue;
-  const range = rawRange || Math.max(maxValue * 0.0005, 1);
-  const min = minValue - range * 0.12;
-  const max = maxValue + range * 0.12;
-  const plotHeight = height - padY * 2;
-  const plotWidth = width - padX * 2;
-
-  ctx.save();
-  ctx.strokeStyle = "rgba(255,255,255,0.075)";
-  ctx.lineWidth = 1;
-  for (let i = 1; i <= 3; i++) {
-    const y = padY + (plotHeight / 4) * i;
-    ctx.beginPath();
-    ctx.moveTo(padX, y);
-    ctx.lineTo(width - padX, y);
-    ctx.stroke();
-  }
-  ctx.restore();
-
-  const points = prices.map((value, index) => ({
-    x: padX + (index / (prices.length - 1)) * plotWidth,
-    y: padY + (1 - ((value - min) / (max - min))) * plotHeight
-  }));
-
-  const trace = () => {
-    ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let i = 1; i < points.length - 1; i++) {
-      const midX = (points[i].x + points[i + 1].x) / 2;
-      const midY = (points[i].y + points[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points[i].x, points[i].y, midX, midY);
-    }
-    const lastPoint = points[points.length - 1];
-    ctx.lineTo(lastPoint.x, lastPoint.y);
-  };
-
-  const gradient = ctx.createLinearGradient(0, padY, 0, height);
-  gradient.addColorStop(0, "rgba(77,124,254,0.20)");
-  gradient.addColorStop(0.65, "rgba(77,124,254,0.055)");
-  gradient.addColorStop(1, "rgba(77,124,254,0)");
-
-  ctx.save();
-  trace();
-  ctx.lineTo(points[points.length - 1].x, height);
-  ctx.lineTo(points[0].x, height);
-  ctx.closePath();
-  ctx.fillStyle = gradient;
-  ctx.fill();
-  ctx.restore();
-
-  ctx.save();
-  trace();
-  ctx.strokeStyle = "rgba(77,124,254,0.22)";
-  ctx.lineWidth = 7;
-  ctx.lineJoin = "round";
-  ctx.lineCap = "round";
-  ctx.shadowColor = "rgba(77,124,254,0.35)";
-  ctx.shadowBlur = 12;
-  ctx.stroke();
-  ctx.restore();
-
-  ctx.save();
-  trace();
-  ctx.strokeStyle = "#4D7CFE";
-  ctx.lineWidth = 2.25;
-  ctx.lineJoin = "round";
-  ctx.lineCap = "round";
-  ctx.stroke();
-  ctx.restore();
-
-  const last = points[points.length - 1];
-  ctx.beginPath();
-  ctx.arc(last.x, last.y, 8, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(77,124,254,0.12)";
-  ctx.fill();
-
-  ctx.beginPath();
-  ctx.arc(last.x, last.y, 3.5, 0, Math.PI * 2);
-  ctx.fillStyle = "#4D7CFE";
-  ctx.fill();
-}
-
-/* price formatting */
-
-function formatPrice(price){
-
-  return "$" +
-    Number(price).toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits:2,
-        maximumFractionDigits:2
-      }
-    );
-
-}
-
-
-/* update price */
-
-let latestBTCPrice = null;
-
-function updatePrice(price){
-
-  const value = Number(price);
-  if (!Number.isFinite(value) || value <= 0) return;
-
-  latestBTCPrice = value;
-
-  if(previousPrice !== null){
-    priceElement.style.color = value >= previousPrice ? "#4D7CFE" : "#ff5555";
-  }
-  previousPrice = value;
-
-  priceElement.textContent = formatPrice(value);
-
-  updatedElement.textContent =
-    "LIVE · " +
-    new Date().toLocaleTimeString([], {
-      hour:"2-digit",
-      minute:"2-digit",
-      second:"2-digit"
-    });
-}
-
-function sampleBTCChart(){
-  if (!latestBTCPrice) return;
-  prices.push(latestBTCPrice);
-  if (prices.length > 120) prices.shift();
-  drawChart();
-}
-
-/* =========================
-   INITIAL BTC DATA
-========================= */
-
-async function loadInitialBTC(){
-
-  try{
-
-    const response =
-      await fetch(
-        "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=1s&limit=120"
-      );
-
-
-    const candles =
-      await response.json();
-
-
-    prices =
-      candles.map(
-        candle => Number(candle[4])
-      );
-
-
-    const last = prices[prices.length - 1];
-    latestBTCPrice = last;
-    priceElement.textContent = formatPrice(last);
-
-    try {
-      const tickerResponse = await fetch(
-        "https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT"
-      );
-      const ticker = await tickerResponse.json();
-      const change = Number(ticker.priceChangePercent);
-      changeElement.textContent =
-        (change >= 0 ? "+" : "") + change.toFixed(2) + "% / 24H";
-    } catch (changeError) {
-      changeElement.textContent = "LIVE / 24H";
-    }
-
-    resizeCanvas();
-
-  }catch(error){
-
-    console.error(
-      "Initial BTC data failed:",
-      error
-    );
-
-    priceElement.textContent =
-      "BTC / USDT";
-
-    changeElement.textContent =
-      "CONNECTING...";
-
-  }
-
-}
-
-
-/* =========================
-   WEBSOCKET
-========================= */
-
-function connectBTC(){
-
-  ws =
-    new WebSocket(
-      "wss://stream.binance.com:9443/ws/btcusdt@trade"
-    );
-
-
-  ws.onopen = () => {
-
-    updatedElement.textContent =
-      "LIVE CONNECTION";
-
-  };
-
-
-  ws.onmessage = event => {
-
-    try{
-
-      const data =
-        JSON.parse(event.data);
-
-
-      if(data.p){
-
-        updatePrice(
-          data.p
-        );
-
-      }
-
-    }catch(error){
-
-      console.error(
-        "BTC message error:",
-        error
-      );
-
-    }
-
-  };
-
-
-  ws.onerror = error => {
-
-    console.error(
-      "BTC WebSocket error:",
-      error
-    );
-
-  };
-
-
-  ws.onclose = () => {
-
-    updatedElement.textContent =
-      "RECONNECTING...";
-
-
-    setTimeout(
-      connectBTC,
-      3000
-    );
-
-  };
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-window.addEventListener(
-  "resize",
-  resizeCanvas
-);
-
-
-loadInitialBTC();
-
-connectBTC();
-
-setInterval(sampleBTCChart, 1000);
-
+/* Live price widget intentionally omitted: this portfolio focuses on verified work and case studies. */
 </script>
 
 <script src="https://unpkg.com/lenis@1.3.27/dist/lenis.min.js"></script>
