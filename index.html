@@ -21,6 +21,20 @@
 @keyframes pulse{50%{opacity:.3}}@keyframes widthpulse{50%{width:54px}}@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-16px)}}@keyframes marquee{to{transform:translateX(-50%)}}
 @media(max-width:800px){.nav{top:10px;height:58px;padding-left:18px}.nav-name{font-size:25px}.nav-links{display:none}.menu{display:block;font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}.hero-inner{padding-top:108px}.hero-top{font-size:8px}.hero-top>div:last-child{max-width:145px;text-align:right}.hero-core{min-height:66vh;padding-bottom:150px}.hero-portrait{width:75vw;height:54vh}.hero-name{font-size:26vw;white-space:normal;text-align:center;line-height:.7}.hero-tagline{bottom:42px;font-size:16px}.hero-rail{display:none}.hero-bottom{grid-template-columns:1fr;gap:12px}.hero-bottom .center,.hero-bottom .right{text-align:left}.hero-bottom .right{display:none}.section-head,.split{grid-template-columns:1fr;gap:38px;margin-bottom:58px}.headline{font-size:20vw}.metrics{grid-template-columns:1fr}.metric{display:grid;grid-template-columns:1fr 1fr;gap:14px;border-right:0;border-bottom:1px solid rgba(28,7,4,.35)}.metric-value{grid-row:span 2}.metric-label{margin-top:0}.disciplines{grid-template-columns:1fr}.discipline{border-right:0;min-height:230px}.work-intro{display:block}.work-card{grid-template-columns:38px 1fr;gap:12px}.work-copy{grid-column:2}.time{grid-template-columns:1fr;gap:10px}.films{grid-template-columns:1fr}.film{min-height:230px}.contact-title{margin:70px 0 85px;font-size:28vw}.contact-bottom,.footer{flex-direction:column;align-items:flex-start}.cursor{display:none}.facts{grid-template-columns:1fr}.fact:nth-child(odd){margin-right:0}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
+/* Responsive Vexar hero backgrounds: desktop + mobile only */
+.hero {
+  background-image: linear-gradient(rgba(5, 0, 0, .16), rgba(5, 0, 0, .28)), url('/hero-desktop.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.hero-portrait { display: none; }
+@media (max-width: 768px) {
+  .hero {
+    background-image: linear-gradient(rgba(5, 0, 0, .12), rgba(5, 0, 0, .24)), url('/- hero-mobile.png');
+    background-position: center center;
+  }
+}
 </style>
 </head>
 <body>
